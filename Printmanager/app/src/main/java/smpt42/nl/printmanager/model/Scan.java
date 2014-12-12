@@ -5,8 +5,7 @@ import java.util.Date;
 /**
  * Created by Bas on 08/12/14.
  */
-public class Scan
-{
+public class Scan implements Comparable {
     private int scanID;
     private int companyID;
 	private Company company;
@@ -14,16 +13,14 @@ public class Scan
 	private Date scanDate;
 	private Date printDate;
 
-	public Scan(Company company, String name, Date scanDate, Date printDate)
-	{
+	public Scan(Company company, String name, Date scanDate, Date printDate) {
 		this.company = company;
 		this.name = name;
 		this.scanDate = scanDate;
 		this.printDate = printDate;
 	}
 
-    public Scan(int scanID, int companyID, String name, Date scanDate, Date printDate)
-    {
+    public Scan(int scanID, int companyID, String name, Date scanDate, Date printDate) {
         this.scanID = scanID;
         this.companyID = companyID;
         this.name = name;
@@ -45,4 +42,10 @@ public class Scan
 	{
 		return printDate;
 	}
+
+    @Override
+    public int compareTo(Object o) {
+        Scan another = (Scan) o;
+        return scanDate.compareTo(another.getScanDate());
+    }
 }
