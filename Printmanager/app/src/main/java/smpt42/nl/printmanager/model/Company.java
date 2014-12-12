@@ -5,6 +5,7 @@ package smpt42.nl.printmanager.model;
  */
 public class Company
 {
+    private int companyID;
 	private String name;
 	private String street;
 	private String city;
@@ -18,6 +19,15 @@ public class Company
 		this.city = city;
 		this. telephone = telephone;
 	}
+
+    public Company(int companyID, String name, String street, String city, String telephone)
+    {
+        this.companyID = companyID;
+        this.name = name;
+        this.street = street;
+        this.city = city;
+        this.telephone = telephone;
+    }
 
 	public String getName()
 	{

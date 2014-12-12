@@ -7,6 +7,8 @@ import java.util.Date;
  */
 public class Scan
 {
+    private int scanID;
+    private int companyID;
 	private Company company;
 	private String name;
 	private Date scanDate;
@@ -19,6 +21,15 @@ public class Scan
 		this.scanDate = scanDate;
 		this.printDate = printDate;
 	}
+
+    public Scan(int scanID, int companyID, String name, Date scanDate, Date printDate)
+    {
+        this.scanID = scanID;
+        this.companyID = companyID;
+        this.name = name;
+        this.scanDate = scanDate;
+        this.printDate = printDate;
+    }
 
 	public String getName()
 	{

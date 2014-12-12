@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.Database;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,6 +15,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Database.getInstance().getCompanies();
     }
 
 

@@ -5,6 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import smpt42.nl.printmanager.model.Company;
+import smpt42.nl.printmanager.model.Scan;
 
 /**
  * Created by Bas on 08/12/14.
@@ -92,4 +101,85 @@ public class Database
 			}
 		}
 	}
+
+    public List<Company> getCompanies()
+    {
+        List<Company> companies = new ArrayList<>();
+
+        try
+        {
+            openConnection();
+
+            String sql =
+                    "SELECT *\n" +
+                            "FROM company com;";
+
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                int companyID = rs.getInt("COMPANY_ID");
+                String name = rs.getString("NAME");
+                String street = rs.getString("STREET");
+                String city = rs.getString("CITY");
+                String telephone = rs.getString("TELEPHONE");
+
+                Company company = new Company(companyID, name, street, city, telephone);
+
+                companies.add(company);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.printf(e.getMessage() + "\n");
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return companies;
+    }
+
+    public List<Scan> getScans() throws ParseException
+    {
+        List<Scan> scans = new ArrayList<>();
+        DateFormat format = new SimpleDateFormat("d-MMM-y, h:m");
+
+        try
+        {
+            openConnection();
+
+            String sql =
+                    "SELECT *\n" +
+                            "FROM scan s, company c;";
+
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                int scanID = rs.getInt("SCAN_ID");
+                int companyID = rs.getInt("COMPANY_ID");
+                String name = rs.getString("NAME");
+                Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
+                Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
+
+                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted);
+
+                scans.add(scan);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.printf(e.getMessage() + "\n");
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return scans;
+    }
 }
