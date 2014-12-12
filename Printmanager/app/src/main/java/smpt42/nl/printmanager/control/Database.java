@@ -102,6 +102,41 @@ public class Database
 		}
 	}
 
+    public boolean login(String username, String password)
+    {
+        try
+        {
+            openConnection();
+
+            String sql = "SELECT u.USERNAME, u.EMAIL, u.COMPANY_ID\n" +
+                    "FROM user u\n" +
+                    "WHERE u.USERNAME = ?\n" +
+                    "AND u.password = ?";
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                return true;
+            }
+        }
+        catch (SQLException ex)
+        {
+            System.out.printf(ex.getMessage() + "\n");
+        }
+        finally
+        {
+            closeConnection();
+        }
+
+        return false;
+    }
+
     public List<Company> getCompanies()
     {
         List<Company> companies = new ArrayList<>();
