@@ -1,5 +1,6 @@
 package smpt42.nl.printmanager.model;
 
+import java.lang.Override;
 import java.util.Date;
 
 /**
@@ -26,6 +27,12 @@ public class Scan implements Comparable {
         this.name = name;
         this.scanDate = scanDate;
         this.printDate = printDate;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[" + this.scanID "] Name: " + this.getName();
     }
 
 	public String getName()

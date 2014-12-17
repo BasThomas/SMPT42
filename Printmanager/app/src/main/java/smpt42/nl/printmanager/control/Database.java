@@ -20,6 +20,11 @@ import smpt42.nl.printmanager.model.Scan;
  */
 public class Database
 {
+    public enum dateFormat
+    {
+        defaultFormat ("d-MMM-y, h:m")
+    }
+
 	private static Database database = null;
 
 	private Connection conn;
@@ -180,7 +185,7 @@ public class Database
     public List<Scan> getScans() throws ParseException
     {
         List<Scan> scans = new ArrayList<>();
-        DateFormat format = new SimpleDateFormat("d-MMM-y, h:m");
+        DateFormat format = new SimpleDateFormat(dateFormat.defaultFormat);
 
         try
         {

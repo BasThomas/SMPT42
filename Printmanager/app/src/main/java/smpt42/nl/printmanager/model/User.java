@@ -1,5 +1,6 @@
 package smpt42.nl.printmanager.model;
 
+import java.lang.Override;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,12 @@ public class User
 
 		this.scans = new ArrayList<>();
 	}
+
+    @Override
+    public String toString()
+    {
+        return "User: " + this.getUsername() + " (who works for " + this.getCompany().toString() + ")";
+    }
 
 	public ArrayList<Scan> getScans()
 	{

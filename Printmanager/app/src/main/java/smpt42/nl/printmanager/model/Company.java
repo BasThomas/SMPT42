@@ -1,5 +1,7 @@
 package smpt42.nl.printmanager.model;
 
+import java.lang.Override;
+
 /**
  * Created by Bas on 08/12/14.
  */
@@ -27,6 +29,12 @@ public class Company
         this.street = street;
         this.city = city;
         this.telephone = telephone;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "[" + this.companyID + "] Name: " + this.getName();
     }
 
 	public String getName()
