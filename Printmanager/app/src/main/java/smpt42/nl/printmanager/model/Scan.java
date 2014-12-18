@@ -32,7 +32,7 @@ public class Scan implements Comparable {
     @Override
     public String toString()
     {
-        return "[" + this.scanID "] Name: " + this.getName();
+        return "[" + this.scanID + "] Name: " + this.getName();
     }
 
 	public String getName()
