@@ -10,19 +10,18 @@ import smpt42.nl.printmanager.model.Scan;
  */
 public class ScanManager {
     List<Scan> scans;
-    Database db;
 
     /**
      * Constructor
      *
      */
     public ScanManager() {
-        db = new Database();
-        try {
-            scans = db.getScans();
-        } catch (ParseException pe) {
-            pe.printStackTrace();
-        }
+        //db = new Database();
+        //try {
+        //    scans = db.getScans();
+        //} catch (ParseException pe) {
+        //    pe.printStackTrace();
+        //}
     }
 
     /**
