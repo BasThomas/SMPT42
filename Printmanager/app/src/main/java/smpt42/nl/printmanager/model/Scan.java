@@ -3,16 +3,20 @@ package smpt42.nl.printmanager.model;
 import java.lang.Override;
 import java.util.Date;
 
+import smpt42.nl.printmanager.control.SCAN_STATUS;
+
 /**
  * Created by Bas on 08/12/14.
  */
-public class Scan implements Comparable {
+public class Scan {
     private int scanID;
     private int companyID;
 	private Company company;
 	private String name;
 	private Date scanDate;
 	private Date printDate;
+    private boolean isStarred;
+    public SCAN_STATUS status;
 
 	public Scan(Company company, String name, Date scanDate, Date printDate) {
 		this.company = company;
@@ -50,9 +54,11 @@ public class Scan implements Comparable {
 		return printDate;
 	}
 
-    @Override
-    public int compareTo(Object o) {
-        Scan another = (Scan) o;
-        return scanDate.compareTo(another.getScanDate());
-    }
+    public Company getCompany() {return company;}
+
+    public boolean getIsStarred() { return isStarred; }
+
+    public SCAN_STATUS getStatus() { return status; }
+
+    public void setStatus(SCAN_STATUS status) { this.status = status; }
 }
