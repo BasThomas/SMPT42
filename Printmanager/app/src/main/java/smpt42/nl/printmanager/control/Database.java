@@ -21,9 +21,9 @@ import smpt42.nl.printmanager.model.Scan;
 public class Database {
     private static Database database = null;
 
-    private Connection conn;
-    private PreparedStatement ps;
-    private ResultSet rs;
+	private Connection conn = null;
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
 
     private String host = "jdbc:mysql://moridrin.com:3306/smpt42";
     private String username = "SMPT42";
@@ -40,28 +40,23 @@ public class Database {
         return database;
     }
 
-    /**
-     * Opens the connection with the database.
-     */
-    private final void openConnection() {
-        try {
-            conn = DriverManager.getConnection(host, username, password);
-        } catch (SQLException e) {
-            System.err.printf(e.getMessage() + "\n");
-        }
-    }
+        return database;
+	}
 
-    /**
-     * Closes the connection with the database.
-     */
-    public void closeConnection() {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                System.out.printf(e.getMessage() + "\n");
-            }
-        }
+	/**
+	 * Opens the connection with the database.
+	 */
+	public final void openConnection()
+	{
+		try
+		{
+			conn = DriverManager.getConnection(host, username, password);
+		}
+		catch(SQLException e)
+		{
+			System.out.printf("openConnection(): " + e.getMessage() + "\n");
+		}
+	}
 
         if (ps != null) {
             try {
@@ -89,6 +84,7 @@ public class Database {
                     "WHERE u.USERNAME = ?\n" +
                     "AND u.password = ?";
 
+            System.out.println("isClosed = " + conn.isClosed());
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, username);
@@ -110,7 +106,7 @@ public class Database {
 
     public List<Company> getCompanies() {
         List<Company> companies = new ArrayList<>();
-        /*
+
         try
         {
             openConnection();
@@ -143,7 +139,7 @@ public class Database {
         finally
         {
             closeConnection();
-        }*/
+        }
         return companies;
     }
 
@@ -168,8 +164,9 @@ public class Database {
                 String name = rs.getString("NAME");
                 Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
                 Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
+                String barcode = rs.getString("BARCODE");
 
-                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted);
+                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted, barcode);
 
                 scans.add(scan);
             }
@@ -181,36 +178,53 @@ public class Database {
         return scans;
     }
 
-    public Scan getScanByBarcode(String barcode) throws ParseException {
-        Scan scan = null;
-        DateFormat format = new SimpleDateFormat("d-MMM-y, h:m");
+    /**
+     * Methode om scan toe te voegen aan de database
+     *
+     * @param scan
+     */
+    public void addScan(Scan scan) {
+        String sql =
+                "INSERT INTO scan (SCAN_ID, COMPANY_ID, NAME, DATE_SCANNED, DATE_PRINTED, BARCODE) VALUES(?, ?, ?, ?, ?, ?)";
+        int id;
 
         try {
-            openConnection();
-
-            String sql =
-                    "SELECT *\n" +
-                            "FROM scan s, company c\n" +
-                            "WHERE s.BARCODE = " + barcode + ";";
-
-            ps = conn.prepareStatement(sql);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                int scanID = rs.getInt("SCAN_ID");
-                int companyID = rs.getInt("COMPANY_ID");
-                String name = rs.getString("NAME");
-                Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
-                Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
-
-                scan = new Scan(scanID, companyID, name, dateScanned, datePrinted);
+            if (!getScans().contains(scan)) {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, getNewScanId());
+                ps.setInt(2, scan.getCompany().getCompanyID());
+                ps.setString(3, scan.getName());
+                //ps.setDate(4, scan.getScanDate());
+                //ps.setDate(5, scan.getPrintDate());
+                ps.setString(6, scan.getBarcode());
             }
-        } catch (SQLException e) {
-            System.out.printf(e.getMessage() + "\n");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             closeConnection();
         }
-        return scan;
+    }
+
+    /**
+     * Methode om een nieuw ID te maken.
+     *
+     * @return          Een nieuw ID.
+     */
+    public Integer getNewScanId() {
+        Integer result = null;
+        String sql =
+                "SELECT MAX(SCAN_ID) FROM scan";
+        try {
+            openConnection();
+            ps = conn.prepareStatement(sql);
+            if(rs!=null && rs.next()){
+                result = rs.getInt("SCAN_ID");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
 }
