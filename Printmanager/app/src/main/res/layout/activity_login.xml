@@ -65,7 +65,9 @@
         android:layout_marginTop="8dp"
         android:text="@string/login"
         android:textColor="@color/light_red"
-        android:background="@drawable/login_button"/>
+        android:background="@drawable/login_button"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
 
 
 </RelativeLayout>

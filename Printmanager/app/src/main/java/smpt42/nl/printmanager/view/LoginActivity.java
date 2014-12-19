@@ -28,6 +28,8 @@ public class LoginActivity extends Activity {
         final EditText password = (EditText) findViewById(R.id.password);
         final Button   loginBtn = (Button)   findViewById(R.id.loginBtn);
 
+        loginBtn.requestFocus();
+
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
