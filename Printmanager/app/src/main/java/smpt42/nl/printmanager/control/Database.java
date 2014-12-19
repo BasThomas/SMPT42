@@ -203,7 +203,7 @@ public class Database
                 Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
                 Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
 
-                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted);
+                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted, "");
 
                 scans.add(scan);
             }

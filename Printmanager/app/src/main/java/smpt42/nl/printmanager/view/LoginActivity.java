@@ -2,6 +2,7 @@ package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,9 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import smpt42.nl.printmanager.R;
@@ -48,46 +52,16 @@ public class LoginActivity extends Activity {
         loginBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus)
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                    builder.setMessage("Wrong username or password");
-                    builder.setTitle("Failed to login");
-
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                }
+                LogIn(hasFocus, username, password);
             }
         });
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                /*if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
-                {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                    startActivity(intent);
-                }
-                else
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                    builder.setMessage("Wrong username or password");
-                    builder.setTitle("Failed to login");
-
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-
-                }*/
+        findViewById(R.id.activity_login_parent).setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                hideSoftKeyboard(LoginActivity.this);
+                return false;
             }
         });
-        // Create login button's setOnClickListener below.
-        // The onClickListener will call Database.getInstance().login();
-        // This method returns a boolean to check if it failed or succeeded.
     }
 
     @Override
@@ -115,26 +89,63 @@ public class LoginActivity extends Activity {
     public void SetEditText(boolean hasFocus, String editTextName, EditText editText)
     {
         if (hasFocus) {
-            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
             if(editText.getText().toString().equals(editTextName))
             {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+
                 editText.setText("");
                 if(editTextName.equals("Password"))
                 {
                     editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }
+                else
+                {
+                    editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                }
+
                 editText.setTextColor(getResources().getColor(R.color.red));
             }
         } else {
             if(editText.getText().toString().equals(""))
             {
                 editText.setText(editTextName);
-                if(editTextName.equals("Password"))
-                {
-                    editText.setInputType(InputType.TYPE_CLASS_TEXT);
-                }
+
+                editText.setInputType(InputType.TYPE_CLASS_TEXT);
+
                 editText.setTextColor(getResources().getColor(R.color.light_red));
             }
         }
     }
+
+    public void LogIn(boolean hasFocus, EditText username, EditText password)
+    {
+        if(hasFocus)
+        {
+            if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
+            {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                startActivity(intent);
+            }
+            else
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                builder.setMessage("Wrong username or password");
+                builder.setTitle("Failed to login");
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+
 }
