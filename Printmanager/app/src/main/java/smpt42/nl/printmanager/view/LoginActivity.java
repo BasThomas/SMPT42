@@ -56,6 +56,13 @@ public class LoginActivity extends Activity {
             }
         });
 
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                startActivity(intent);            }
+        });
+
         findViewById(R.id.activity_login_parent).setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 hideSoftKeyboard(LoginActivity.this);
@@ -121,7 +128,8 @@ public class LoginActivity extends Activity {
 
     public void LogIn(boolean hasFocus, EditText username, EditText password)
     {
-        if(hasFocus)
+        //deze code is als de database werkt
+        /*if(hasFocus)
         {
             if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
             {
@@ -139,7 +147,9 @@ public class LoginActivity extends Activity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
-        }
+        }*/
+
+
     }
 
     public static void hideSoftKeyboard(Activity activity) {
