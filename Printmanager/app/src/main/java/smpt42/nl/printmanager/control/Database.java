@@ -113,10 +113,10 @@ public class Database
                     "WHERE u.USERNAME = ?\n" +
                     "AND u.password = ?";
 
+            ps = conn.prepareStatement(sql);
+
             ps.setString(1, username);
             ps.setString(2, password);
-
-            ps = conn.prepareStatement(sql);
 
             rs = ps.executeQuery();
 
@@ -140,7 +140,7 @@ public class Database
     public List<Company> getCompanies()
     {
         List<Company> companies = new ArrayList<>();
-
+        /*
         try
         {
             openConnection();
@@ -173,7 +173,7 @@ public class Database
         finally
         {
             closeConnection();
-        }
+        }*/
         return companies;
     }
 
