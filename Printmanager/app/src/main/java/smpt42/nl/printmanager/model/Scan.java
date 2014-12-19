@@ -4,6 +4,7 @@ import java.lang.Override;
 import java.util.Date;
 
 import smpt42.nl.printmanager.control.SCAN_STATUS;
+import smpt42.nl.printmanager.control.ScanManager;
 
 /**
  * Created by Bas on 08/12/14.
@@ -16,21 +17,24 @@ public class Scan {
 	private Date scanDate;
 	private Date printDate;
     private boolean isStarred;
-    public SCAN_STATUS status;
+    private SCAN_STATUS status;
+    private String barcode;
 
-	public Scan(Company company, String name, Date scanDate, Date printDate) {
+	public Scan(Company company, String name, Date scanDate, Date printDate, String barcode) {
 		this.company = company;
 		this.name = name;
 		this.scanDate = scanDate;
 		this.printDate = printDate;
+        this.barcode = barcode;
 	}
 
-    public Scan(int scanID, int companyID, String name, Date scanDate, Date printDate) {
+    public Scan(int scanID, int companyID, String name, Date scanDate, Date printDate, String barcode) {
         this.scanID = scanID;
         this.companyID = companyID;
         this.name = name;
         this.scanDate = scanDate;
         this.printDate = printDate;
+        this.barcode = barcode;
     }
 
     @Override
@@ -61,4 +65,6 @@ public class Scan {
     public SCAN_STATUS getStatus() { return status; }
 
     public void setStatus(SCAN_STATUS status) { this.status = status; }
+
+    public String getBarcode() { return barcode; }
 }

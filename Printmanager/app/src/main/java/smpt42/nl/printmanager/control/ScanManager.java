@@ -28,10 +28,20 @@ public class ScanManager {
     }
 
     public List<Scan> searchByName(String input) {
-        List<Scan> result = new ArrayList<>();
+        List<Scan> result = null;
         for (Scan s : scans) {
             if (s.getName().contains(input)) {
                 result.add(s);
+            }
+        }
+        return result;
+    }
+
+    public Scan searchByBarcode(String barcode) {
+        Scan result = null;
+        for (Scan s : scans) {
+            if (s.getBarcode() == barcode) {
+                result = s;
             }
         }
         return result;
