@@ -22,9 +22,9 @@ public class Database
 {
 	private static Database database = null;
 
-	private Connection conn;
-	private PreparedStatement ps;
-	private ResultSet rs;
+	private Connection conn = null;
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
 
 	private String host = "jdbc:mysql://moridrin.nl:3306/smpt42";
 	private String username = "SMPT42";
@@ -42,7 +42,7 @@ public class Database
 			database = new Database();
 		}
 
-		return database;
+        return database;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class Database
 		}
 		catch(SQLException e)
 		{
-			System.out.printf(e.getMessage() + "\n");
+			System.out.printf("openConnection(): " + e.getMessage() + "\n");
 		}
 	}
 
@@ -113,6 +113,7 @@ public class Database
                     "WHERE u.USERNAME = ?\n" +
                     "AND u.password = ?";
 
+            System.out.println("isClosed = " + conn.isClosed());
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, username);
@@ -140,7 +141,7 @@ public class Database
     public List<Company> getCompanies()
     {
         List<Company> companies = new ArrayList<>();
-        /*
+
         try
         {
             openConnection();
@@ -173,7 +174,7 @@ public class Database
         finally
         {
             closeConnection();
-        }*/
+        }
         return companies;
     }
 

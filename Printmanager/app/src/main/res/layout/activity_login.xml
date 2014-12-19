@@ -40,8 +40,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/username"
         android:textColor="@color/light_red"
-        android:background="@drawable/edit_text"
-        />
+        android:background="@drawable/edit_text"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
