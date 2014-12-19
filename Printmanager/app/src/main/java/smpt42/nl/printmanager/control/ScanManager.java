@@ -1,5 +1,6 @@
 package smpt42.nl.printmanager.control;
 
+import java.text.ParseException;
 import java.util.*;
 
 import smpt42.nl.printmanager.model.Scan;
@@ -9,6 +10,20 @@ import smpt42.nl.printmanager.model.Scan;
  */
 public class ScanManager {
     List<Scan> scans;
+    Database db;
+
+    /**
+     * Constructor
+     *
+     */
+    public ScanManager() {
+        db = new Database();
+        try {
+            scans = db.getScans();
+        } catch (ParseException pe) {
+            pe.printStackTrace();
+        }
+    }
 
     /**
      * Voeg een scan toe aan de lijst met scans
@@ -17,6 +32,7 @@ public class ScanManager {
      */
     public void addScan(Scan scan) {
         scans.add(scan);
+
     }
 
     /**
