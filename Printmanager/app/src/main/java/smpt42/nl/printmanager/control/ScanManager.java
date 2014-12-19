@@ -10,10 +10,21 @@ import smpt42.nl.printmanager.model.Scan;
 public class ScanManager {
     List<Scan> scans;
 
+    /**
+     * Voeg een scan toe aan de lijst met scans
+     *
+     * @param scan          De toe te voegen scan
+     */
     public void addScan(Scan scan) {
         scans.add(scan);
     }
 
+    /**
+     * Haalt de scans op, gesorteerd op de aangegeven eigenschap
+     *
+     * @param sorttype      De eigenschap waarop gesorteerd moet worden
+     * @return              De gesorteerde lijst met scans
+     */
     public List<Scan> getScans(SORT_TYPE sorttype) {
         if (sorttype == SORT_TYPE.DATE) {
             Collections.sort(scans, sortByDate);
@@ -27,6 +38,12 @@ public class ScanManager {
         return scans;
     }
 
+    /**
+     * Zoekt naar scans waarvan de naam (deels) bestaat uit de ingevulde zoekterm.
+     *
+     * @param input         String met de zoekterm van de gebruiker
+     * @return              Gevonden scans, null bij geen resultaat
+     */
     public List<Scan> searchByName(String input) {
         List<Scan> result = null;
         for (Scan s : scans) {
@@ -37,6 +54,12 @@ public class ScanManager {
         return result;
     }
 
+    /**
+     * Zoekt naar de scan met de opgegeven barcode
+     *
+     * @param barcode       String met de barcode waarop gezocht moet worden
+     * @return              Gevonden scan, null bij geen resultaat
+     */
     public Scan searchByBarcode(String barcode) {
         Scan result = null;
         for (Scan s : scans) {
