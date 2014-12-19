@@ -202,8 +202,9 @@ public class Database
                 String name = rs.getString("NAME");
                 Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
                 Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
+                String barcode = rs.getString("BARCODE");
 
-                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted, "");
+                Scan scan = new Scan(scanID, companyID, name, dateScanned, datePrinted, barcode);
 
                 scans.add(scan);
             }
@@ -217,5 +218,55 @@ public class Database
             closeConnection();
         }
         return scans;
+    }
+
+    /**
+     * Methode om scan toe te voegen aan de database
+     *
+     * @param scan
+     */
+    public void addScan(Scan scan) {
+        String sql =
+                "INSERT INTO scan (SCAN_ID, COMPANY_ID, NAME, DATE_SCANNED, DATE_PRINTED, BARCODE) VALUES(?, ?, ?, ?, ?, ?)";
+        int id;
+
+        try {
+            if (!getScans().contains(scan)) {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, getNewScanId());
+                ps.setInt(2, scan.getCompany().getCompanyID());
+                ps.setString(3, scan.getName());
+                //ps.setDate(4, scan.getScanDate());
+                //ps.setDate(5, scan.getPrintDate());
+                ps.setString(6, scan.getBarcode());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+    }
+
+    /**
+     * Methode om een nieuw ID te maken.
+     *
+     * @return          Een nieuw ID.
+     */
+    public Integer getNewScanId() {
+        Integer result = null;
+        String sql =
+                "SELECT MAX(SCAN_ID) FROM scan";
+        try {
+            openConnection();
+            ps = conn.prepareStatement(sql);
+            if(rs!=null && rs.next()){
+                result = rs.getInt("SCAN_ID");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
 }

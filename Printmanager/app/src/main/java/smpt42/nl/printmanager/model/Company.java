@@ -56,4 +56,6 @@ public class Company
 	{
 		return telephone;
 	}
+
+    public int getCompanyID() { return companyID; }
 }

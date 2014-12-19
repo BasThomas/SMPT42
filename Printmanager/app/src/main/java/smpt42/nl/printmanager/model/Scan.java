@@ -43,6 +43,8 @@ public class Scan {
         return "[" + this.scanID + "] Name: " + this.getName();
     }
 
+    public int getScanID() { return scanID; }
+
 	public String getName()
 	{
 		return name;

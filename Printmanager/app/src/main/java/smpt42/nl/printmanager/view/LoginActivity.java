@@ -11,12 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import smpt42.nl.printmanager.R;
@@ -60,14 +58,15 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         });
 
         findViewById(R.id.activity_login_parent).setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 hideSoftKeyboard(LoginActivity.this);
-                return false;
-            }
+                    return false;
+                }
         });
     }
 
@@ -96,12 +95,10 @@ public class LoginActivity extends Activity {
     public void SetEditText(boolean hasFocus, String editTextName, EditText editText)
     {
         if (hasFocus) {
-
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
             if(editText.getText().toString().equals(editTextName))
             {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
-
                 editText.setText("");
                 if(editTextName.equals("Password"))
                 {
@@ -111,7 +108,6 @@ public class LoginActivity extends Activity {
                 {
                     editText.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
-
                 editText.setTextColor(getResources().getColor(R.color.red));
             }
         } else {
@@ -148,6 +144,12 @@ public class LoginActivity extends Activity {
                 dialog.show();
             }
         }*/
+        /*if(hasFocus)
+        {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            startActivity(intent);
+        }*/
 
 
     }
@@ -156,6 +158,4 @@ public class LoginActivity extends Activity {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
-
-
 }
