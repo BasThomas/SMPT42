@@ -1,6 +1,7 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -44,14 +45,44 @@ public class LoginActivity extends Activity {
             }
         });
 
+        loginBtn.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                    builder.setMessage("Wrong username or password");
+                    builder.setTitle("Failed to login");
+
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
+
+                /*if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
                 {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                     startActivity(intent);
                 }
+                else
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+
+                    builder.setMessage("Wrong username or password");
+                    builder.setTitle("Failed to login");
+
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }*/
             }
         });
         // Create login button's setOnClickListener below.
