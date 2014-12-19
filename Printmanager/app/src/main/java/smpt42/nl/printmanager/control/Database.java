@@ -18,94 +18,70 @@ import smpt42.nl.printmanager.model.Scan;
 /**
  * Created by Bas on 08/12/14.
  */
-public class Database
-{
-	private static Database database = null;
+public class Database {
+    private static Database database = null;
 
-	private Connection conn;
-	private PreparedStatement ps;
-	private ResultSet rs;
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
-	private String host = "jdbc:mysql://moridrin.nl:3306/smpt42";
-	private String username = "SMPT42";
-	private String password = "xYQ4TsAUDAnWYvV7";
+    private String host = "jdbc:mysql://moridrin.com:3306/smpt42";
+    private String username = "SMPT42";
+    private String password = "xYQ4TsAUDAnWYvV7";
 
-	protected Database()
-	{
-		openConnection();
-	}
+    protected Database() {
+        openConnection();
+    }
 
-	public static Database getInstance()
-	{
-		if (database == null)
-		{
-			database = new Database();
-		}
+    public static Database getInstance() {
+        if (database == null) {
+            database = new Database();
+        }
+        return database;
+    }
 
-		return database;
-	}
+    /**
+     * Opens the connection with the database.
+     */
+    private final void openConnection() {
+        try {
+            conn = DriverManager.getConnection(host, username, password);
+        } catch (SQLException e) {
+            System.err.printf(e.getMessage() + "\n");
+        }
+    }
 
-	/**
-	 * Opens the connection with the database.
-	 */
-	public final void openConnection()
-	{
-		try
-		{
-			conn = DriverManager.getConnection(host, username, password);
-		}
-		catch(SQLException e)
-		{
-			System.out.printf(e.getMessage() + "\n");
-		}
-	}
+    /**
+     * Closes the connection with the database.
+     */
+    public void closeConnection() {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                System.out.printf(e.getMessage() + "\n");
+            }
+        }
 
-	/**
-	 * Closes the connection with the database.
-	 */
-	public void closeConnection()
-	{
-		if(rs != null)
-		{
-			try
-			{
-				rs.close();
-			}
-			catch(SQLException e)
-			{
-				System.out.printf(e.getMessage() + "\n");
-			}
-		}
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                System.out.printf(e.getMessage() + "\n");
+            }
+        }
 
-		if(ps != null)
-		{
-			try
-			{
-				ps.close();
-			}
-			catch(SQLException e)
-			{
-				System.out.printf(e.getMessage() + "\n");
-			}
-		}
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.out.printf(e.getMessage() + "\n");
+            }
+        }
+    }
 
-		if(conn != null)
-		{
-			try
-			{
-				conn.close();
-			}
-			catch(SQLException e)
-			{
-				System.out.printf(e.getMessage() + "\n");
-			}
-		}
-	}
-
-    public boolean login(String username, String password)
-    {
-        try
-        {
+    public boolean login(String username, String password) {
+        try {
             openConnection();
 
             String sql = "SELECT u.USERNAME, u.EMAIL, u.COMPANY_ID\n" +
@@ -120,25 +96,19 @@ public class Database
 
             rs = ps.executeQuery();
 
-            while(rs.next())
-            {
+            while (rs.next()) {
                 return true;
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             System.out.printf(ex.getMessage() + "\n");
-        }
-        finally
-        {
+        } finally {
             closeConnection();
         }
 
         return false;
     }
 
-    public List<Company> getCompanies()
-    {
+    public List<Company> getCompanies() {
         List<Company> companies = new ArrayList<>();
         /*
         try
@@ -177,13 +147,11 @@ public class Database
         return companies;
     }
 
-    public List<Scan> getScans() throws ParseException
-    {
+    public List<Scan> getScans() throws ParseException {
         List<Scan> scans = new ArrayList<>();
         DateFormat format = new SimpleDateFormat("d-MMM-y, h:m");
 
-        try
-        {
+        try {
             openConnection();
 
             String sql =
@@ -194,8 +162,7 @@ public class Database
 
             rs = ps.executeQuery();
 
-            while(rs.next())
-            {
+            while (rs.next()) {
                 int scanID = rs.getInt("SCAN_ID");
                 int companyID = rs.getInt("COMPANY_ID");
                 String name = rs.getString("NAME");
@@ -206,15 +173,44 @@ public class Database
 
                 scans.add(scan);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.printf(e.getMessage() + "\n");
-        }
-        finally
-        {
+        } finally {
             closeConnection();
         }
         return scans;
+    }
+
+    public Scan getScanByBarcode(String barcode) throws ParseException {
+        Scan scan = null;
+        DateFormat format = new SimpleDateFormat("d-MMM-y, h:m");
+
+        try {
+            openConnection();
+
+            String sql =
+                    "SELECT *\n" +
+                            "FROM scan s, company c\n" +
+                            "WHERE s.BARCODE = " + barcode + ";";
+
+            ps = conn.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int scanID = rs.getInt("SCAN_ID");
+                int companyID = rs.getInt("COMPANY_ID");
+                String name = rs.getString("NAME");
+                Date dateScanned = format.parse(rs.getString("DATE_SCANNED"));
+                Date datePrinted = format.parse(rs.getString("DATE_PRINTED"));
+
+                scan = new Scan(scanID, companyID, name, dateScanned, datePrinted);
+            }
+        } catch (SQLException e) {
+            System.out.printf(e.getMessage() + "\n");
+        } finally {
+            closeConnection();
+        }
+        return scan;
     }
 }
