@@ -1,12 +1,12 @@
 package smpt42.nl.printmanager.view;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.Database;
+import smpt42.nl.printmanager.com.google.zxing.integration.android.IntentIntegrator;
 
 
 public class MainActivity extends ActionBarActivity {

@@ -49,6 +49,6 @@ public class GetScanByCode extends AsyncTask<String, Void, Scan> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate);
+        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]);
     }
 }

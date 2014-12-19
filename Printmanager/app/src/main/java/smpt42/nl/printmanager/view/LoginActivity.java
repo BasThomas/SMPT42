@@ -1,26 +1,26 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.Database;
 
 public class LoginActivity extends Activity {
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
 
         final EditText username = (EditText) findViewById(R.id.username);
         final EditText password = (EditText) findViewById(R.id.password);
-        final Button   loginBtn = (Button)   findViewById(R.id.loginBtn);
+        final Button loginBtn = (Button) findViewById(R.id.loginBtn);
 
         loginBtn.requestFocus();
 
@@ -65,8 +65,8 @@ public class LoginActivity extends Activity {
         findViewById(R.id.activity_login_parent).setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 hideSoftKeyboard(LoginActivity.this);
-                    return false;
-                }
+                return false;
+            }
         });
     }
 
@@ -92,27 +92,21 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void SetEditText(boolean hasFocus, String editTextName, EditText editText)
-    {
+    public void SetEditText(boolean hasFocus, String editTextName, EditText editText) {
         if (hasFocus) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
-            if(editText.getText().toString().equals(editTextName))
-            {
+            if (editText.getText().toString().equals(editTextName)) {
                 editText.setText("");
-                if(editTextName.equals("Password"))
-                {
+                if (editTextName.equals("Password")) {
                     editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                }
-                else
-                {
+                } else {
                     editText.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
                 editText.setTextColor(getResources().getColor(R.color.red));
             }
         } else {
-            if(editText.getText().toString().equals(""))
-            {
+            if (editText.getText().toString().equals("")) {
                 editText.setText(editTextName);
 
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -122,8 +116,7 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public void LogIn(boolean hasFocus, EditText username, EditText password)
-    {
+    public void LogIn(boolean hasFocus, EditText username, EditText password) {
         //deze code is als de database werkt
         /*if(hasFocus)
         {
@@ -144,18 +137,12 @@ public class LoginActivity extends Activity {
                 dialog.show();
             }
         }*/
-        if(hasFocus)
-        {
+        if (hasFocus) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
             startActivity(intent);
         }
 
 
-    }
-
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

@@ -40,6 +40,6 @@ public abstract class PHPDatabase {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate);
+        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, code);
     }
 }

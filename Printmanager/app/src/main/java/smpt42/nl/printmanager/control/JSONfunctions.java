@@ -14,12 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Momentum by Wout
- * Created by Jeroen on 2014-12-19.
- */
 public class JSONfunctions {
-
     public static JSONObject getJSONfromURL(String url) {
         InputStream is = null;
         String result = "";
