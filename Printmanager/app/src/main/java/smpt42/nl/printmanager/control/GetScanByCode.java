@@ -44,11 +44,16 @@ public class GetScanByCode extends AsyncTask<String, Void, Scan> {
             scanDate = format.parse((String) jsonObject.get("SCAN_DATE"));
             printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
             previewURL = (String) jsonObject.get("PREVIEW");
+
+            // Return Scanobject when parsing succeeded.
+            return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]);
+
+        // Return null when action failed.
+        return null;
     }
 }

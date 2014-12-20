@@ -37,9 +37,14 @@ public abstract class PHPDatabase {
             scanDate = (Date) jsonObject.get("SCAN_DATE");
             printDate = (Date) jsonObject.get("PRINT_DATE");
             previewURL = (String) jsonObject.get("PREVIEW");
+
+            // Return Scanobject when parsing succeeded.
+            return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, code);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, code);
+
+        // Return null when action failed.
+        return null;
     }
 }

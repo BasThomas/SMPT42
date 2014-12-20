@@ -96,9 +96,10 @@ public class ScanManager {
         Scan result = null;
         for (Scan s : scans) {
             if (s.getBarcode() == barcode) {
-                result = s;
+                // Immediately cancel after barcode has been found.
+                return result;
             }
         }
-        return result;
+        return null;
     }
 }
