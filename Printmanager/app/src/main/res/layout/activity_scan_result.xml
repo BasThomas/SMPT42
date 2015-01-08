@@ -79,15 +79,13 @@
                 android:paddingTop="10dp"
                 android:text="@string/name"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="60dp"
                 android:paddingTop="10dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_weight="8"
                 android:id="@+id/textViewNameValue"/>
         </TableRow>
         <TableRow>
@@ -95,14 +93,12 @@
                 android:layout_height="50dp"
                 android:text="@string/company"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="50dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_weight="8"
                 android:id="@+id/textViewCompanyValue"/>
         </TableRow>
         <TableRow>
@@ -110,14 +106,12 @@
                 android:layout_height="50dp"
                 android:text="@string/adres"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="50dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_weight="8"
                 android:id="@+id/textViewAdresValue"/>
         </TableRow>
         <TableRow>
@@ -125,14 +119,12 @@
                 android:layout_height="50dp"
                 android:text="@string/tel"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="50dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/red"
-                android:layout_weight="8"
                 android:id="@+id/textViewTelValue"/>
         </TableRow>
         <TableRow>
@@ -140,14 +132,12 @@
                 android:layout_height="50dp"
                 android:text="@string/scanned_date"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="50dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_weight="8"
                 android:id="@+id/textViewScannedDateValue"/>
         </TableRow>
         <TableRow>
@@ -155,14 +145,12 @@
                 android:layout_height="50dp"
                 android:text="@string/printed_date"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-                android:layout_weight="2"/>
+                android:textColor="@color/black"/>
             <TextView
                 android:layout_height="50dp"
                 android:text="Tekst hier"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_weight="8"
                 android:id="@+id/textViewPrintedDateValue"/>
         </TableRow>
 
