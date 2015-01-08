@@ -8,5 +8,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Log in</string>
+    <string name="title_activity_scan_result">ScanResultActivity</string>
+    <string name="title_activity_resent__scans">Resent_Scans</string>
 
 </resources>
