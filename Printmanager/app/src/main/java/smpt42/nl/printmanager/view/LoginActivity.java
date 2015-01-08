@@ -56,9 +56,9 @@ public class LoginActivity extends Activity {
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
 

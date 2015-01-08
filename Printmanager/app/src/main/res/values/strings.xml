@@ -10,5 +10,13 @@
     <string name="login">Log in</string>
     <string name="title_activity_scan_result">ScanResultActivity</string>
     <string name="title_activity_resent__scans">Resent_Scans</string>
+    <string name="details">Details</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="adres">Adres</string>
+    <string name="tel">Tel</string>
+    <string name="scanned_date">Scanned\ndate</string>
+    <string name="printed_date">Printed\ndate</string>
+    <string name="status">Status</string>
 
 </resources>
