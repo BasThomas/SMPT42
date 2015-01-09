@@ -19,5 +19,8 @@
     <string name="printed_date">Printed\ndate</string>
     <string name="status">Status</string>
     <string name="title_activity_account">AccountActivity</string>
+    <string name="history">History</string>
+    <string name="scan">Scan</string>
+    <string name="account">Account</string>
 
 </resources>

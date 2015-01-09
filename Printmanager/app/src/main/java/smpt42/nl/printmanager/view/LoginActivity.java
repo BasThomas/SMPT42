@@ -139,7 +139,7 @@ public class LoginActivity extends Activity {
         }
         */
         if (hasFocus) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, ScanResultActivity.class);
 
             startActivity(intent);
         }
