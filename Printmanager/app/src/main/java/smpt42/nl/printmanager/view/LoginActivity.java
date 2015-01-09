@@ -1,6 +1,7 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -116,7 +117,8 @@ public class LoginActivity extends Activity {
 
     public void LogIn(boolean hasFocus, EditText username, EditText password) {
         //deze code is als de database werkt
-        /*if(hasFocus)
+        /*
+        if(hasFocus)
         {
             if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
             {
@@ -134,7 +136,8 @@ public class LoginActivity extends Activity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
-        }*/
+        }
+        */
         if (hasFocus) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 

@@ -1,27 +1,38 @@
 package smpt42.nl.printmanager.view;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.model.Company;
+import smpt42.nl.printmanager.model.User;
 
-public class Resent_Scans extends ActionBarActivity {
+public class AccountActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resent__scans);
-        ListView listView = (ListView) findViewById(R.id.listViewsentScans);
+        setContentView(R.layout.activity_account);
+
+        Company company = new Company("", "", "", "");
+        User user = new User(company, "Bas", "bas@basbroek.nl");
+
+        if (user.logout())
+        {
+            Intent intent = new Intent(this, LoginActivity.class);
+
+            startActivity(intent);
+        }
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_resent__scans, menu);
+        getMenuInflater().inflate(R.menu.menu_account, menu);
         return true;
     }
 

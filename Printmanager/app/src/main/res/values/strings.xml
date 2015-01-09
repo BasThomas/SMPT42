@@ -18,5 +18,6 @@
     <string name="scanned_date">Scanned\ndate</string>
     <string name="printed_date">Printed\ndate</string>
     <string name="status">Status</string>
+    <string name="title_activity_account">AccountActivity</string>
 
 </resources>

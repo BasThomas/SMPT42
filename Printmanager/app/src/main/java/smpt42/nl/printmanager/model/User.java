@@ -28,6 +28,11 @@ public class User
         return "User: " + this.getUsername() + " (who works for " + this.getCompany().toString() + ")";
     }
 
+    public boolean logout()
+    {
+        return true;
+    }
+
 	public ArrayList<Scan> getScans()
 	{
 		return scans;

@@ -1,31 +1,22 @@
 package com.pieter.helloworld;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends Activity {
+public class OverviewActivity extends Activity {
 
 
     public static void hideSoftKeyboard(Activity activity) {
@@ -40,7 +31,7 @@ public class MainActivity extends Activity {
 
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(MainActivity.this);
+                    hideSoftKeyboard(OverviewActivity.this);
                     return false;
                 }
             });
@@ -59,7 +50,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_overview);
         setupUI(findViewById(R.id.historyParent));
 
 

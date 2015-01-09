@@ -32,6 +32,10 @@
             android:name=".view.Resent_Scans"
             android:label="@string/title_activity_resent__scans" >
         </activity>
+        <activity
+            android:name=".view.AccountActivity"
+            android:label="@string/title_activity_account" >
+        </activity>
     </application>
 
 </manifest>
