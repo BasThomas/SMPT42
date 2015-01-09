@@ -1,9 +1,11 @@
 package smpt42.nl.printmanager.view;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -14,7 +16,7 @@ import smpt42.nl.printmanager.control.GetScanByCode;
 import smpt42.nl.printmanager.control.PHPDatabase;
 import smpt42.nl.printmanager.model.Scan;
 
-public class ScanResultActivity extends ActionBarActivity {
+public class ScanResultActivity extends Activity {
 
     private Scan scan;
 
@@ -22,7 +24,9 @@ public class ScanResultActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
-        GetScanByCode getScanByCode = new GetScanByCode();
+
+
+        /*GetScanByCode getScanByCode = new GetScanByCode();
         try {
             scan = getScanByCode.execute(getIntent().getExtras().getString("barcode")).get();
         } catch (InterruptedException e) {
@@ -30,7 +34,7 @@ public class ScanResultActivity extends ActionBarActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        updateLabels();
+        updateLabels();*/
     }
 
     private void updateLabels(){
