@@ -14,6 +14,7 @@ import java.net.ContentHandler;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.view.AccountActivity;
+import smpt42.nl.printmanager.view.MainActivity;
 import smpt42.nl.printmanager.view.OverviewActivity;
 import smpt42.nl.printmanager.view.ScanResultActivity;
 
@@ -56,7 +57,7 @@ public class SetTaskBar  {
 
         IVscan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activity, ScanResultActivity.class);
+                Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
             }
         });
@@ -80,7 +81,7 @@ public class SetTaskBar  {
 
         TVscan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activity, ScanResultActivity.class);
+                Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
             }
         });

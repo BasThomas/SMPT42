@@ -32,9 +32,6 @@ public class ScanResultActivity extends Activity {
         setContentView(R.layout.activity_scan_result);
 
         final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
-        /*final ImageView ImageButtonHistory = (ImageView) findViewById(R.id.historyImage);
-        final ImageView ImageButtonScan = (ImageView) findViewById(R.id.scanImage);
-        final ImageView ImageButtonAccount = (ImageView) findViewById(R.id.accountImage);*/
 
         ImageButtonBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -44,28 +41,6 @@ public class ScanResultActivity extends Activity {
         });
 
         SetTaskBar setTaskBar = new SetTaskBar(this);
-
-        /*
-        ImageButtonHistory.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ScanResultActivity.this, OverviewActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButtonScan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ScanResultActivity.this, ScanResultActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageButtonAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(ScanResultActivity.this, AccountActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         /*GetScanByCode getScanByCode = new GetScanByCode();
         try {
