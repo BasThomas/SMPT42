@@ -290,7 +290,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/history"
-            android:textColor="@color/red" />
+            android:textColor="@color/red"
+            android:id="@+id/historyText"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -298,7 +299,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/scan"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:id="@+id/scanText"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -306,7 +308,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/account"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:id="@+id/accountText"/>
 
     </LinearLayout>
 

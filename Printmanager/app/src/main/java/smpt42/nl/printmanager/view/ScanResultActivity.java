@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutionException;
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.GetScanByCode;
 import smpt42.nl.printmanager.control.PHPDatabase;
+import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.model.Scan;
 
 public class ScanResultActivity extends Activity {
@@ -41,6 +42,9 @@ public class ScanResultActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        SetTaskBar setTaskBar = new SetTaskBar(this);
+
         /*
         ImageButtonHistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
