@@ -24,7 +24,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-        android:background="@drawable/arrow_red" />
+        android:background="@drawable/arrow_red"
+        android:id="@+id/backImageButton"/>
 
     <FrameLayout
         android:id="@+id/Name"
@@ -134,7 +135,7 @@
 
                 <TextView
                     android:layout_height="40dp"
-                    android:text="@string/adres"
+                    android:text="@string/address"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
 
@@ -253,21 +254,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/history_red" />
+            android:src="@drawable/history_red"
+            android:id="@+id/historyImage"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/qr_black" />
+            android:src="@drawable/qr_black"
+            android:id="@+id/scanImage"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@drawable/profile" />
+            android:src="@drawable/profile"
+            android:id="@+id/accountImage"/>
     </LinearLayout>
 
     <LinearLayout
