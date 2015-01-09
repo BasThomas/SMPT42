@@ -23,6 +23,8 @@
     <string name="scan">Scan</string>
     <string name="account">Account</string>
     <string name="title_activity_overview">OverviewActivity</string>
+    <string name="personal">Personal</string>
+    <string name="logout">Log out</string>
 
 
 </resources>

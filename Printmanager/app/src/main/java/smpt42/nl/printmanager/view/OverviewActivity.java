@@ -16,6 +16,7 @@ import android.widget.SearchView;
 import java.util.ArrayList;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.SetTaskBar;
 
 
 public class OverviewActivity extends Activity {
@@ -54,6 +55,7 @@ public class OverviewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         setupUI(findViewById(R.id.historyParent));
+        SetTaskBar setTaskBar = new SetTaskBar(this);
 
 
         ArrayList<HistoryItemRow> exampleRows = new ArrayList<HistoryItemRow>();

@@ -37,7 +37,7 @@ public class SetTaskBar  {
         final ImageView imageButtonScan = (ImageView) activity.findViewById(R.id.scanImage);
         final ImageView imageButtonAccount = (ImageView) activity.findViewById(R.id.accountImage);
 
-        final TextView textViewHistory = (TextView) activity.findViewById(R.id.accountText);
+        final TextView textViewHistory = (TextView) activity.findViewById(R.id.historyText);
         final TextView textViewScan = (TextView) activity.findViewById(R.id.scanText);
         final TextView textViewAccount = (TextView) activity.findViewById(R.id.accountText);
 
