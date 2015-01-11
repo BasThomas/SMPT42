@@ -57,7 +57,6 @@ public class OverviewActivity extends Activity {
         setupUI(findViewById(R.id.historyParent));
         SetTaskBar setTaskBar = new SetTaskBar(this);
 
-
         ArrayList<HistoryItemRow> exampleRows = new ArrayList<HistoryItemRow>();
         exampleRows.add(new HistoryItemRow(1, "Olifant", "Oce"));
         exampleRows.add(new HistoryItemRow(2, "Poster", "Fontys Eindhoven"));
@@ -81,7 +80,6 @@ public class OverviewActivity extends Activity {
                 btnCompany.setTextColor(Color.RED);
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
-
             }
         });
         btnCompany.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +105,6 @@ public class OverviewActivity extends Activity {
             }
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

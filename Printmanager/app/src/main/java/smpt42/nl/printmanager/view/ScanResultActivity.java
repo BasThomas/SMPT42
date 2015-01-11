@@ -18,7 +18,6 @@ import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.GetScanByCode;
-import smpt42.nl.printmanager.control.PHPDatabase;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.model.Scan;
 

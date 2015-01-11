@@ -14,9 +14,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.concurrent.ExecutionException;
+
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.Login;
 
 public class LoginActivity extends Activity {
+
+    private EditText password;
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -29,7 +34,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         final EditText username = (EditText) findViewById(R.id.username);
-        final EditText password = (EditText) findViewById(R.id.password);
+        password = (EditText) findViewById(R.id.password);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
 
         loginBtn.requestFocus();
@@ -116,34 +121,23 @@ public class LoginActivity extends Activity {
     }
 
     public void LogIn(boolean hasFocus, EditText username, EditText password) {
-        //deze code is als de database werkt
-        /*
-        if(hasFocus)
-        {
-            if(Database.getInstance().login(username.getText().toString(), password.getText().toString()))
-            {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                startActivity(intent);
-            }
-            else
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                builder.setMessage("Wrong username or password");
-                builder.setTitle("Failed to login");
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        }
-        */
         if (hasFocus) {
-            Intent intent = new Intent(LoginActivity.this, ScanResultActivity.class);
-
-            startActivity(intent);
+            boolean success = false;
+            Login login = new Login();
+            try {
+                 success = login.execute(username.getText().toString(), password.getText().toString()).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            if (success) {
+                Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
+                startActivity(intent);
+            }else{
+                password.setError("Username or Password incorrect");
+                password.requestFocus();
+            }
         }
-
-
     }
 }

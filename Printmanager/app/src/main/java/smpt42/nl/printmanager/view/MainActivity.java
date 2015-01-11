@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.PHPDatabase;
 import smpt42.nl.printmanager.model.Scan;
 
 import com.google.zxing.integration.android.IntentIntegrator;
