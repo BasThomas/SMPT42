@@ -42,7 +42,8 @@
         android:text="@string/username"
         android:textColor="@color/light_red"
         android:background="@drawable/edit_text"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:paddingLeft="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -55,7 +56,8 @@
         android:text="@string/password"
         android:textColor="@color/light_red"
         android:background="@drawable/edit_text"
-        android:imeOptions="actionNext"/>
+        android:imeOptions="actionNext"
+        android:paddingLeft="10dp"/>
 
     <Button
         android:layout_width="match_parent"

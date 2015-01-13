@@ -41,7 +41,7 @@ public class ScanResultActivity extends Activity {
 
         SetTaskBar setTaskBar = new SetTaskBar(this);
 
-        /*GetScanByCode getScanByCode = new GetScanByCode();
+        GetScanByCode getScanByCode = new GetScanByCode();
         try {
             scan = getScanByCode.execute(getIntent().getExtras().getString("barcode")).get();
         } catch (InterruptedException e) {
@@ -49,7 +49,7 @@ public class ScanResultActivity extends Activity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        updateLabels();*/
+        updateLabels();
     }
 
     private void updateLabels(){

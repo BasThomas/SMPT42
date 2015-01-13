@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -21,7 +23,7 @@ import smpt42.nl.printmanager.control.Login;
 
 public class LoginActivity extends Activity {
 
-    private EditText password;
+
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -34,8 +36,19 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         final EditText username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
+        final EditText password = (EditText) findViewById(R.id.password);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
+
+        SharedPreferences sharedPref = this.getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+        String user = sharedPref.getString("username", null);
+        String pass = sharedPref.getString("password", null);
+
+        if(user != null && pass != null)
+        {
+            Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         loginBtn.requestFocus();
 
@@ -132,12 +145,31 @@ public class LoginActivity extends Activity {
                 e.printStackTrace();
             }
             if (success) {
+                SharedPreferences sharedPref = getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("username", username.getText().toString());
+                editor.putString("password", password.getText().toString());
+                editor.commit();
+
                 Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
                 startActivity(intent);
+                finish();
+
             }else{
+
                 password.setError("Username or Password incorrect");
                 password.requestFocus();
+
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,7 +1,9 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,8 +41,16 @@ public class AccountActivity extends Activity {
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SharedPreferences sharedPref = getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.remove("username");
+                editor.remove("password");
+                editor.commit();
+
                 Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
             }
         });
     }
