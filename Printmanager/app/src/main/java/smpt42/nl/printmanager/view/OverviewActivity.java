@@ -65,13 +65,14 @@ public class OverviewActivity extends Activity {
         SetTaskBar setTaskBar = new SetTaskBar(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
+        Company company2 = new Company("test", "test", "test", "test");
 
         final ArrayList<Scan> scans = new ArrayList<Scan>();
-        scans.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
+        scans.add(new Scan(company2, "Nachtwacht", new Date(), new Date(), "barcode1"));
         scans.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
-        scans.add(new Scan(company, "Darude", new Date(), new Date(), "barcode3"));
+        scans.add(new Scan(company2, "Darude", new Date(), new Date(), "barcode3"));
         scans.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
-        scans.add(new Scan(company, "DDW", new Date(), new Date(), "barcode5"));
+        scans.add(new Scan(company2, "DDW", new Date(), new Date(), "barcode5"));
         scans.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
         ListView lView = (ListView)findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
