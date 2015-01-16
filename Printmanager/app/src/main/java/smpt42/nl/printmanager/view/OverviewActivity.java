@@ -63,6 +63,8 @@ public class OverviewActivity extends Activity {
         setupUI(findViewById(R.id.historyParent));
         SetTaskBar setTaskBar = new SetTaskBar(this);
 
+        hideSoftKeyboard(this);
+
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
 
         final ArrayList<Scan> scans = new ArrayList<Scan>();
@@ -126,6 +128,10 @@ public class OverviewActivity extends Activity {
         ListView lView = (ListView)findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(type));
         lView.setAdapter(hAdapter);
+
+        System.out.println(sm.getScans(SORT_TYPE.DATE));
+        System.out.println(sm.getScans(SORT_TYPE.COMPANY));
+        System.out.println(sm.getScans(SORT_TYPE.STARRED));
     }
 
     @Override
