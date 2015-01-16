@@ -21,6 +21,7 @@ import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.HistoryItemRow;
 import smpt42.nl.printmanager.model.Scan;

@@ -55,7 +55,7 @@ public class SharedPref {
         return (starred != null);
     }
 
-    public void SetStarred(String scanName)
+    public void AddStarred(String scanName)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
