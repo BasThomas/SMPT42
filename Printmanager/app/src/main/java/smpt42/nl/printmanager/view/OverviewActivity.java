@@ -65,15 +65,15 @@ public class OverviewActivity extends Activity {
 
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
 
-        ArrayList<Scan> exampleRows = new ArrayList<Scan>();
-        exampleRows.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
-        exampleRows.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
-        exampleRows.add(new Scan(company, "Darude", new Date(), new Date(), "barcode3"));
-        exampleRows.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
-        exampleRows.add(new Scan(company, "DDW", new Date(), new Date(), "barcode5"));
-        exampleRows.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
+        final ArrayList<Scan> scans = new ArrayList<Scan>();
+        scans.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
+        scans.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
+        scans.add(new Scan(company, "Darude", new Date(), new Date(), "barcode3"));
+        scans.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
+        scans.add(new Scan(company, "DDW", new Date(), new Date(), "barcode5"));
+        scans.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
         ListView lView = (ListView)findViewById(R.id.listView);
-        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, exampleRows);
+        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
         lView.setAdapter(hAdapter);
 
         final Button btnDate = (Button)findViewById(R.id.btnDate);
@@ -89,7 +89,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                reorder(SORT_TYPE.DATE);
+                reorder(scans, SORT_TYPE.DATE);
             }
         });
         btnCompany.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                reorder(SORT_TYPE.COMPANY);
+                reorder(scans, SORT_TYPE.COMPANY);
             }
         });
         btnStarred.setOnClickListener(new View.OnClickListener() {
@@ -115,14 +115,14 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right));
                 btnStarred.setTextColor(Color.WHITE);
 
-                reorder(SORT_TYPE.STARRED);
+                reorder(scans, SORT_TYPE.STARRED);
             }
         });
     }
 
-    public void reorder(SORT_TYPE type)
+    public void reorder(ArrayList<Scan> scans, SORT_TYPE type)
     {
-        ScanManager sm = new ScanManager();
+        ScanManager sm = new ScanManager(scans);
         ListView lView = (ListView)findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(type));
         lView.setAdapter(hAdapter);

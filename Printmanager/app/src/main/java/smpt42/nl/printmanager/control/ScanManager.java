@@ -33,7 +33,8 @@ public class ScanManager {
     /**
      * Constructor
      */
-    public ScanManager() {
+    public ScanManager(ArrayList<Scan> scans) {
+        this.scans = scans;
         //db = new Database();
         //try {
         //    scans = db.getScans();
