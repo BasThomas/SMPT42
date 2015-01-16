@@ -14,17 +14,20 @@ import android.widget.ImageButton;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.User;
 
 public class AccountActivity extends Activity {
 
+    SharedPref pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
         SetTaskBar setTaskBar = new SetTaskBar(this);
+        pref = new SharedPref(this);
 
         Company company = new Company("", "", "", "");
         User user = new User(company, "Bas", "bas@basbroek.nl");
@@ -41,12 +44,7 @@ public class AccountActivity extends Activity {
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SharedPreferences sharedPref = getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.remove("username");
-                editor.remove("password");
-                editor.commit();
-
+                pref.RemoveLogin();
                 Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

@@ -1,5 +1,6 @@
 package smpt42.nl.printmanager.control;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,19 +13,47 @@ import smpt42.nl.printmanager.view.OverviewActivity;
  */
 public class SharedPref {
 
-    public boolean isLoggedIn()
+   private Activity activity;
+
+   public SharedPref(Activity act)
+   {
+       activity = act;
+   }
+
+    public boolean IsLoggedIn()
     {
-        SharedPreferences sharedPref = getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
         String user = sharedPref.getString("username", null);
         String pass = sharedPref.getString("password", null);
 
-        if(user != null && pass != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (user != null && pass != null);
     }
+
+    public void AddLogin(String user, String pass)
+    {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("username", user);
+        editor.putString("password", pass);
+        editor.commit();
+    }
+
+    public void RemoveLogin()
+    {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove("username");
+        editor.remove("password");
+        editor.commit();
+    }
+
+    private boolean IsStarred(String scanName)
+    {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
+        String starred = sharedPref.getString(scanName, null);
+
+        return (starred != null);
+    }
+
+
 }

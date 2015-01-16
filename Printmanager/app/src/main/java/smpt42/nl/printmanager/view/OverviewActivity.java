@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ListView;
@@ -62,8 +63,7 @@ public class OverviewActivity extends Activity {
         setContentView(R.layout.activity_overview);
         setupUI(findViewById(R.id.historyParent));
         SetTaskBar setTaskBar = new SetTaskBar(this);
-
-        hideSoftKeyboard(this);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
 

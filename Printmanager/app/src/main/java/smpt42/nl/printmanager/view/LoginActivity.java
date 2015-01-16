@@ -20,10 +20,11 @@ import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.Login;
+import smpt42.nl.printmanager.control.SharedPref;
 
 public class LoginActivity extends Activity {
 
-
+    SharedPref pref;
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -39,11 +40,10 @@ public class LoginActivity extends Activity {
         final EditText password = (EditText) findViewById(R.id.password);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
 
-        SharedPreferences sharedPref = this.getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
-        String user = sharedPref.getString("username", null);
-        String pass = sharedPref.getString("password", null);
+        pref = new SharedPref(this);
 
-        if(user != null && pass != null)
+
+        if(pref.IsLoggedIn())
         {
             Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
             startActivity(intent);
@@ -145,11 +145,9 @@ public class LoginActivity extends Activity {
                 e.printStackTrace();
             }
             if (success) {
-                SharedPreferences sharedPref = getSharedPreferences("printmanager_shared_preferences", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("username", username.getText().toString());
-                editor.putString("password", password.getText().toString());
-                editor.commit();
+
+
+                pref.AddLogin(username.getText().toString(), password.getText().toString());
 
                 Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
                 startActivity(intent);
