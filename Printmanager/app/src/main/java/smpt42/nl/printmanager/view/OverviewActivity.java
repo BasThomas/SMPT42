@@ -65,7 +65,6 @@ public class OverviewActivity extends Activity {
         SetTaskBar setTaskBar = new SetTaskBar(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
-        //test
 
         final ArrayList<Scan> scans = new ArrayList<Scan>();
         scans.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
