@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,7 +22,6 @@ import smpt42.nl.printmanager.control.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.model.Company;
-import smpt42.nl.printmanager.model.HistoryItemRow;
 import smpt42.nl.printmanager.model.Scan;
 
 
@@ -34,7 +34,6 @@ public class OverviewActivity extends Activity {
     }
 
     public void setupUI(View view) {
-
         //Set up touch listener for non-text box views to hide keyboard.
         if(!(view instanceof SearchView)) {
 
@@ -63,17 +62,16 @@ public class OverviewActivity extends Activity {
         setupUI(findViewById(R.id.historyParent));
         SetTaskBar setTaskBar = new SetTaskBar(this);
 
-        hideSoftKeyboard(this);
-
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
+        Company company2 = new Company("Apple", "Infinite Loop 1", "Cupertino", "077 8993 99");
 
         final ArrayList<Scan> scans = new ArrayList<Scan>();
         scans.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
-        scans.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
+        scans.add(new Scan(company2, "Marcel K", new Date(), new Date(), "barcode2"));
         scans.add(new Scan(company, "Darude", new Date(), new Date(), "barcode3"));
-        scans.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
+        scans.add(new Scan(company2, "Ribs Factory", new Date(), new Date(), "barcode4"));
         scans.add(new Scan(company, "DDW", new Date(), new Date(), "barcode5"));
-        scans.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
+        scans.add(new Scan(company2, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
         ListView lView = (ListView)findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
         lView.setAdapter(hAdapter);
