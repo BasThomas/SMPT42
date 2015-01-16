@@ -80,46 +80,40 @@ public class ScanResultActivity extends Activity {
         }
         updateLabels();
 
+        if(isStarred(scan.getName()))
+        {
+            imageViewStar.setImageResource(R.drawable.details_starred);
+        }
 
     }
 
-    private boolean isStarred(String name)
+    private boolean isStarred(String scanName)
     {
         SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
-        Set<String> Set = new HashSet<>();
-        Set = sharedPref.getStringSet("starred_scans", null);
-
-        for (String temp : Set)
+        String starred = sharedPref.getString(scanName, null);
+        if(starred == null)
         {
-            if(temp.equals(name))
-            {
-                return true;
-            }
+            return false;
         }
-        return false;
+        else
+        {
+            return true;
+        }
     }
 
-    private void setStarred(String name)
+    private void setStarred(String scanName)
     {
         SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        Set<String> set = new HashSet<>();
-        set = sharedPref.getStringSet("starred_scans", null);
-        set.add(name);
-        editor.putStringSet("starred_scans", set);
+        editor.putString(scanName, scanName);
         editor.commit();
     }
 
-    private void removeStarred(String name)
+    private void removeStarred(String scanName)
     {
         SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        Set<String> set = new HashSet<>();
-        set = sharedPref.getStringSet("starred_scans", null);
-
-        set.remove(name);
-
-        editor.putStringSet("starred_scans", set);
+        editor.remove(scanName);
         editor.commit();
     }
 

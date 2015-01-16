@@ -155,7 +155,9 @@ public class LoginActivity extends Activity {
                 startActivity(intent);
                 finish();
 
-            }else{
+            }
+            else
+            {
 
                 password.setError("Username or Password incorrect");
                 password.requestFocus();
