@@ -60,6 +60,7 @@ public class ScanManager {
      * @return De gesorteerde lijst met scans
      */
     public ArrayList<Scan> getScans(SORT_TYPE sorttype) {
+        System.out.println(scans);
         if (sorttype == SORT_TYPE.DATE) {
             Collections.sort(scans, sortByDate);
         } else if (sorttype == SORT_TYPE.COMPANY) {
@@ -67,6 +68,7 @@ public class ScanManager {
         } else if (sorttype == SORT_TYPE.STARRED) {
             Collections.sort(scans, sortByStarred);
         } else {
+
             return null;
         }
 
