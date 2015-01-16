@@ -27,11 +27,13 @@ import java.util.concurrent.ExecutionException;
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.GetScanByCode;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.Scan;
 
 public class ScanResultActivity extends Activity {
 
     private Scan scan;
+    private SharedPref pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,9 @@ public class ScanResultActivity extends Activity {
         setContentView(R.layout.activity_scan_result);
 
 
-
         final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
         final ImageView imageViewStar = (ImageView) findViewById(R.id.ImageViewStar);
-
+        pref = new SharedPref(this);
 
 
         ImageButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -54,15 +55,12 @@ public class ScanResultActivity extends Activity {
 
         imageViewStar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(isStarred(scan.getName()))
-                {
+                if (pref.IsStarred(scan.getName())) {
                     imageViewStar.setImageResource(R.drawable.details_star);
-                    removeStarred(scan.getName());
-                }
-                else
-                {
+                    pref.RemoveStarred(scan.getName());
+                } else {
                     imageViewStar.setImageResource(R.drawable.details_starred);
-                    setStarred(scan.getName());
+                    pref.SetStarred(scan.getName());
                 }
 
             }
@@ -80,44 +78,13 @@ public class ScanResultActivity extends Activity {
         }
         updateLabels();
 
-        if(isStarred(scan.getName()))
-        {
+        if (pref.IsStarred(scan.getName())) {
             imageViewStar.setImageResource(R.drawable.details_starred);
         }
 
     }
 
-    private boolean isStarred(String scanName)
-    {
-        SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
-        String starred = sharedPref.getString(scanName, null);
-        if(starred == null)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    private void setStarred(String scanName)
-    {
-        SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(scanName, scanName);
-        editor.commit();
-    }
-
-    private void removeStarred(String scanName)
-    {
-        SharedPreferences sharedPref = getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.remove(scanName);
-        editor.commit();
-    }
-
-    private void updateLabels(){
+    private void updateLabels() {
         TextView textViewName = (TextView) findViewById(R.id.textViewName);
         textViewName.setText(this.scan.getName());
         TextView textViewName2 = (TextView) findViewById(R.id.textViewNameValue);

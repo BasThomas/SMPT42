@@ -47,12 +47,28 @@ public class SharedPref {
         editor.commit();
     }
 
-    private boolean IsStarred(String scanName)
+    public boolean IsStarred(String scanName)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         String starred = sharedPref.getString(scanName, null);
 
         return (starred != null);
+    }
+
+    public void SetStarred(String scanName)
+    {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(scanName, scanName);
+        editor.commit();
+    }
+
+    public void RemoveStarred(String scanName)
+    {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(scanName);
+        editor.commit();
     }
 
 

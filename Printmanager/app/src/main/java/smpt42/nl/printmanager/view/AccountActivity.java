@@ -20,7 +20,8 @@ import smpt42.nl.printmanager.model.User;
 
 public class AccountActivity extends Activity {
 
-    SharedPref pref;
+    private SharedPref pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

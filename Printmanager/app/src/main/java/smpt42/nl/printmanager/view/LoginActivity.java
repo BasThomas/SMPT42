@@ -24,7 +24,7 @@ import smpt42.nl.printmanager.control.SharedPref;
 
 public class LoginActivity extends Activity {
 
-    SharedPref pref;
+    private SharedPref pref;
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

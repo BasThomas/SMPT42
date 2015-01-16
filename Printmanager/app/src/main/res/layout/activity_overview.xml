@@ -92,7 +92,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/bottomButtonImage"/>
+        android:layout_above="@+id/bottomButtonImage"
+        android:paddingBottom="50dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
