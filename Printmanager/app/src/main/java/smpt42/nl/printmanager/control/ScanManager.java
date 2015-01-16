@@ -1,5 +1,6 @@
 package smpt42.nl.printmanager.control;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ScanManager {
             return s1.compareTo(s2);
         }
     };
-    List<Scan> scans;
+    ArrayList<Scan> scans;
 
     /**
      * Constructor
@@ -57,7 +58,7 @@ public class ScanManager {
      * @param sorttype De eigenschap waarop gesorteerd moet worden
      * @return De gesorteerde lijst met scans
      */
-    public List<Scan> getScans(SORT_TYPE sorttype) {
+    public ArrayList<Scan> getScans(SORT_TYPE sorttype) {
         if (sorttype == SORT_TYPE.DATE) {
             Collections.sort(scans, sortByDate);
         } else if (sorttype == SORT_TYPE.COMPANY) {
@@ -67,6 +68,7 @@ public class ScanManager {
         } else {
             return null;
         }
+
         return scans;
     }
 

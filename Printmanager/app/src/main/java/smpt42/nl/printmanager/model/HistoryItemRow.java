@@ -1,4 +1,4 @@
-package smpt42.nl.printmanager.view;
+package smpt42.nl.printmanager.model;
 
 /**
  * Created by Pieter on 19-12-2014.

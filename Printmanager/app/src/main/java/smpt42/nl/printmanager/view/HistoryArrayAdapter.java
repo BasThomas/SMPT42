@@ -8,18 +8,20 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.model.HistoryItemRow;
+import smpt42.nl.printmanager.model.Scan;
 
 import java.util.ArrayList;
 
 /**
  * Created by Pieter on 19-12-2014.
  */
-public class HistoryArrayAdapter extends ArrayAdapter<HistoryItemRow>
+public class HistoryArrayAdapter extends ArrayAdapter<Scan>
 {
     private final Context context;
-    private final ArrayList<HistoryItemRow> itemsArrayList;
+    private final ArrayList<Scan> itemsArrayList;
 
-    public HistoryArrayAdapter(Context context, ArrayList<HistoryItemRow> itemsArrayList)
+    public HistoryArrayAdapter(Context context, ArrayList<Scan> itemsArrayList)
     {
         super(context, R.layout.scan_item, itemsArrayList);
         this.context = context;
@@ -34,8 +36,8 @@ public class HistoryArrayAdapter extends ArrayAdapter<HistoryItemRow>
 
         TextView tbTitle = (TextView)rowView.findViewById(R.id.tbTitle);
         TextView tbCompany = (TextView)rowView.findViewById(R.id.tbCompany);
-        tbTitle.setText(itemsArrayList.get(position).Title);
-        tbCompany.setText(itemsArrayList.get(position).Company);
+        tbTitle.setText(itemsArrayList.get(position).getName());
+        tbCompany.setText(itemsArrayList.get(position).getCompany().getName());
 
         return rowView;
     }

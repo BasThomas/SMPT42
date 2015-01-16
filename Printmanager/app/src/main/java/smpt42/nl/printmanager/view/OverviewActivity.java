@@ -14,9 +14,15 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.SORT_TYPE;
+import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.model.Company;
+import smpt42.nl.printmanager.model.HistoryItemRow;
+import smpt42.nl.printmanager.model.Scan;
 
 
 public class OverviewActivity extends Activity {
@@ -57,13 +63,15 @@ public class OverviewActivity extends Activity {
         setupUI(findViewById(R.id.historyParent));
         SetTaskBar setTaskBar = new SetTaskBar(this);
 
-        ArrayList<HistoryItemRow> exampleRows = new ArrayList<HistoryItemRow>();
-        exampleRows.add(new HistoryItemRow(1, "Olifant", "Oce"));
-        exampleRows.add(new HistoryItemRow(2, "Poster", "Fontys Eindhoven"));
-        exampleRows.add(new HistoryItemRow(3, "De Nachtwacht", "Van Gogh"));
-        exampleRows.add(new HistoryItemRow(4, "Nog een item", "Geen Inspiratie inc."));
-        exampleRows.add(new HistoryItemRow(5, "McKroket", "McDonalds"));
-        exampleRows.add(new HistoryItemRow(6, "Sandstorm", "Darude"));
+        Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
+
+        ArrayList<Scan> exampleRows = new ArrayList<Scan>();
+        exampleRows.add(new Scan(company, "Nachtwacht", new Date(), new Date(), "barcode1"));
+        exampleRows.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
+        exampleRows.add(new Scan(company, "Darude", new Date(), new Date(), "barcode3"));
+        exampleRows.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
+        exampleRows.add(new Scan(company, "DDW", new Date(), new Date(), "barcode5"));
+        exampleRows.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
         ListView lView = (ListView)findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, exampleRows);
         lView.setAdapter(hAdapter);
@@ -80,6 +88,8 @@ public class OverviewActivity extends Activity {
                 btnCompany.setTextColor(Color.RED);
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
+
+                reorder(SORT_TYPE.DATE);
             }
         });
         btnCompany.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +101,8 @@ public class OverviewActivity extends Activity {
                 btnCompany.setTextColor(Color.WHITE);
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
+
+                reorder(SORT_TYPE.COMPANY);
             }
         });
         btnStarred.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +114,18 @@ public class OverviewActivity extends Activity {
                 btnCompany.setTextColor(Color.RED);
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right));
                 btnStarred.setTextColor(Color.WHITE);
+
+                reorder(SORT_TYPE.STARRED);
             }
         });
+    }
+
+    public void reorder(SORT_TYPE type)
+    {
+        ScanManager sm = new ScanManager();
+        ListView lView = (ListView)findViewById(R.id.listView);
+        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(type));
+        lView.setAdapter(hAdapter);
     }
 
     @Override
