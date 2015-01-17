@@ -1,4 +1,4 @@
-package smpt42.nl.printmanager.control;
+package smpt42.nl.printmanager.model.enums;
 
 /**
  * Created by Daan on 12/12/2014.

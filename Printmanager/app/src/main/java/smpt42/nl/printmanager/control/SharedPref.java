@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import smpt42.nl.printmanager.model.Company;
+import smpt42.nl.printmanager.model.Scan;
 import smpt42.nl.printmanager.model.User;
 import smpt42.nl.printmanager.view.LoginActivity;
 import smpt42.nl.printmanager.view.OverviewActivity;
@@ -49,27 +50,29 @@ public class SharedPref {
         editor.commit();
     }
 
-    public boolean IsStarred(String scanName)
+    public boolean IsStarred(Scan scan)
     {
         SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
-        String starred = sharedPref.getString(scanName, null);
-
-        return (starred != null);
+        boolean isStarred = sharedPref.getBoolean(scan.getName(), false);
+        scan.setStarred(isStarred);
+        return isStarred;
     }
 
-    public void AddStarred(String scanName)
+    public void AddStarred(Scan scan)
     {
+        scan.setStarred(true);
         SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(scanName, scanName);
+        editor.putBoolean(scan.getName(), true);
         editor.commit();
     }
 
-    public void RemoveStarred(String scanName)
+    public void RemoveStarred(Scan scan)
     {
+        scan.setStarred(false);
         SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_starred_scans", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.remove(scanName);
+        editor.remove(scan.getName());
         editor.commit();
     }
 

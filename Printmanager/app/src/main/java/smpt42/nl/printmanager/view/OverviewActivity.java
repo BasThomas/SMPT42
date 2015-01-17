@@ -15,15 +15,13 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.SORT_TYPE;
+import smpt42.nl.printmanager.model.enums.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.internet.GetScans;
-import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
 
 
@@ -127,10 +125,6 @@ public class OverviewActivity extends Activity {
         ListView lView = (ListView) findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(type));
         lView.setAdapter(hAdapter);
-
-        System.out.println(sm.getScans(SORT_TYPE.DATE));
-        System.out.println(sm.getScans(SORT_TYPE.COMPANY));
-        System.out.println(sm.getScans(SORT_TYPE.STARRED));
     }
 
     @Override

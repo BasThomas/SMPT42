@@ -3,8 +3,7 @@ package smpt42.nl.printmanager.model;
 import java.lang.Override;
 import java.util.Date;
 
-import smpt42.nl.printmanager.control.SCAN_STATUS;
-import smpt42.nl.printmanager.control.ScanManager;
+import smpt42.nl.printmanager.model.enums.SCAN_STATUS;
 
 /**
  * Created by Bas on 08/12/14.
@@ -72,6 +71,10 @@ public class Scan {
 	}
 
     public Company getCompany() {return company;}
+
+    public void setStarred(boolean isStarred) {
+        this.isStarred = isStarred;
+    }
 
     public boolean getIsStarred() { return isStarred; }
 

@@ -42,12 +42,12 @@ public class ScanResultActivity extends Activity {
 
         imageViewStar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (pref.IsStarred(scan.getName())) {
+                if (pref.IsStarred(scan)) {
                     imageViewStar.setImageResource(R.drawable.details_star);
-                    pref.RemoveStarred(scan.getName());
+                    pref.RemoveStarred(scan);
                 } else {
                     imageViewStar.setImageResource(R.drawable.details_starred);
-                    pref.AddStarred(scan.getName());
+                    pref.AddStarred(scan);
                 }
 
             }
@@ -65,7 +65,7 @@ public class ScanResultActivity extends Activity {
         }
         if (scan != null) {
             updateLabels();
-            if (pref.IsStarred(scan.getName())) {
+            if (pref.IsStarred(scan)) {
                 imageViewStar.setImageResource(R.drawable.details_starred);
             }
         } else {

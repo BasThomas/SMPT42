@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import smpt42.nl.printmanager.R;
@@ -53,7 +54,10 @@ public class HistoryArrayAdapter extends ArrayAdapter<Scan> {
                     try {
                         String urlString = params[0];
                         URL url = new URL(urlString);
-                        InputStream in = url.openStream();
+                        URLConnection urlConnection = url.openConnection();
+                        urlConnection.setConnectTimeout(500);
+                        urlConnection.setReadTimeout(500);
+                        InputStream in = urlConnection.getInputStream();
                         return BitmapFactory.decodeStream(in);
                     } catch (Exception e) {
                         /* TODO log error */
@@ -70,7 +74,7 @@ public class HistoryArrayAdapter extends ArrayAdapter<Scan> {
 
         tbTitle.setText(itemsArrayList.get(position).getName());
         tbCompany.setText(itemsArrayList.get(position).getCompany().getName());
-        if (pref.IsStarred(itemsArrayList.get(position).getName())) {
+        if (pref.IsStarred(itemsArrayList.get(position))) {
             imageStarred.setImageResource(R.drawable.history_starred);
         } else {
             imageStarred.setImageResource(R.drawable.history_starred_white);

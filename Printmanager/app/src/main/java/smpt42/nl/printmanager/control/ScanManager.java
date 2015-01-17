@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import smpt42.nl.printmanager.model.Scan;
+import smpt42.nl.printmanager.model.enums.SORT_TYPE;
 
 /**
  * Created by Daan on 12/19/2014.
@@ -13,7 +14,7 @@ import smpt42.nl.printmanager.model.Scan;
 public class ScanManager {
     public static Comparator<Scan> sortByDate = new Comparator<Scan>() {
         public int compare(Scan scan1, Scan scan2) {
-            return scan1.getScanDate().compareTo(scan2.getScanDate());
+            return scan1.getPrintDate().compareTo(scan2.getPrintDate());
         }
     };
     public static Comparator<Scan> sortByCompany = new Comparator<Scan>() {
@@ -68,10 +69,8 @@ public class ScanManager {
         } else if (sorttype == SORT_TYPE.STARRED) {
             Collections.sort(scans, sortByStarred);
         } else {
-
             return null;
         }
-
         return scans;
     }
 

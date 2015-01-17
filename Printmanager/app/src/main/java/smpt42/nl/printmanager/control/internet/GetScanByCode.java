@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import smpt42.nl.printmanager.control.JSONfunctions;
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
 

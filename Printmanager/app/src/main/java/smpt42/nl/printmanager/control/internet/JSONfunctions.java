@@ -1,4 +1,4 @@
-package smpt42.nl.printmanager.control;
+package smpt42.nl.printmanager.control.internet;
 
 import android.util.Log;
 
