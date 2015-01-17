@@ -82,7 +82,7 @@ public class SharedPref {
         sharedPref.edit().putString("STREET", user.getCompany().getStreet()).apply();
         sharedPref.edit().putString("CITY", user.getCompany().getCity()).apply();
         sharedPref.edit().putString("TELEPHONE", user.getCompany().getTelephone()).apply();
-        sharedPref.edit().putString("PREVIEW", user.getPreviewURL()).apply();
+        sharedPref.edit().putString("IMAGE", user.getImageURL()).apply();
     }
 
     public User getUser() {
@@ -95,7 +95,7 @@ public class SharedPref {
         String street = sharedPref.getString("STREET", null);
         String city = sharedPref.getString("CITY", null);
         String telephone = sharedPref.getString("TELEPHONE", null);
-        String preview = sharedPref.getString("PREVIEW", null);
-        return new User(new Company(companyName, street, city, telephone), username, surname, lastname, email);
+        String preview = sharedPref.getString("IMAGE", null);
+        return new User(new Company(companyName, street, city, telephone), username, surname, lastname, email, preview);
     }
 }

@@ -47,6 +47,7 @@
                     android:textSize="30dp" />
 
                 <ImageView
+                    android:id="@+id/userImage"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"

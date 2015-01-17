@@ -1,4 +1,4 @@
-package smpt42.nl.printmanager.control;
+package smpt42.nl.printmanager.control.internet;
 
 import android.os.AsyncTask;
 
@@ -8,23 +8,21 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import smpt42.nl.printmanager.control.JSONfunctions;
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
 
 /**
- *
+ * Momentum by Wout
  * Created by Jeroen on 2014-12-19.
  */
-public class GetScans extends AsyncTask<String, Void, List<Scan>> {
+public class GetScanByCode extends AsyncTask<String, Void, Scan> {
 
     @Override
-    protected List<Scan> doInBackground(String... params) {
-        List<Scan> scans = new ArrayList<>();
-        JSONObject jsonObject = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getPrints.php");
+    protected Scan doInBackground(String... params) {
+        JSONObject jsonObject = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getPrintByCode.php?barcode=" + params[0]);
         int companyID = 0;
         String companyName = null;
         String street = null;
@@ -48,12 +46,15 @@ public class GetScans extends AsyncTask<String, Void, List<Scan>> {
             printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
             previewURL = (String) jsonObject.get("PREVIEW");
 
-            scans.add(new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]));
+            // Return Scanobject when parsing succeeded.
+            return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return scans;
+
+        // Return null when action failed.
+        return null;
     }
 }

@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.URL;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SetTaskBar;
@@ -66,6 +74,31 @@ public class AccountActivity extends Activity {
 
         final TextView textViewTelValue = (TextView) findViewById(R.id.textViewTelValue);
         textViewTelValue.setText(user.getCompany().getTelephone());
+
+        final ImageView imageView = (ImageView) findViewById(R.id.userImage);
+        if (user.getImageURL() != null) {
+            new AsyncTask<String, Void, Bitmap>() {
+
+                @Override
+                protected Bitmap doInBackground(String... params) {
+
+                    try {
+                        String urlString = params[0];
+                        URL url = new URL(urlString);
+                        InputStream in = url.openStream();
+                        return BitmapFactory.decodeStream(in);
+                    } catch (Exception e) {
+                        /* TODO log error */
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Bitmap bitmap) {
+                    imageView.setImageBitmap(bitmap);
+                }
+            }.execute(user.getImageURL());
+        }
     }
 
 

@@ -1,10 +1,8 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -19,7 +17,7 @@ import android.widget.EditText;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.Login;
+import smpt42.nl.printmanager.control.internet.Login;
 import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.User;
 
@@ -151,7 +149,6 @@ public class LoginActivity extends Activity {
                 Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
                 startActivity(intent);
                 finish();
-
             }
             else
             {

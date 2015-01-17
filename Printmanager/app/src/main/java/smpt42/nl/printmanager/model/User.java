@@ -1,7 +1,18 @@
 package smpt42.nl.printmanager.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.Override;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
+import smpt42.nl.printmanager.control.internet.GetImage;
 
 /**
  * Created by Bas on 08/12/14.
@@ -14,7 +25,7 @@ public class User
     private String lastname;
 	private String email;
 	private ArrayList<Scan> scans = null;
-    private String previewURL;
+    private String imageURL;
 
     public User(Company company, String username, String email) {
         this(company, username, null, null, email);
@@ -24,19 +35,18 @@ public class User
         this(company, username, surname, lastname, email, null);
     }
 
-    public User(Company company, String username, String surname, String lastname, String email, String previewURL) {
+    public User(Company company, String username, String surname, String lastname, String email, String imageURL) {
         this.company = company;
         this.username = username;
         this.surname = surname;
         this.lastname = lastname;
         this.email = email;
         this.scans = new ArrayList<>();
-        this.previewURL = previewURL;
+        this.imageURL = imageURL;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "User: " + this.getUsername() + " (who works for " + this.getCompany().toString() + ")";
     }
 
@@ -65,10 +75,6 @@ public class User
 		return email;
 	}
 
-    public String getPreviewURL() {
-        return previewURL;
-    }
-
     public String getLastname() {
         return lastname;
     }
@@ -79,5 +85,9 @@ public class User
 
     public String getName() {
         return lastname + ", " + surname;
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 }
