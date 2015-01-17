@@ -14,9 +14,9 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.internet.GetScanByCode;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.SharedPref;
+import smpt42.nl.printmanager.control.internet.GetScanByCode;
 import smpt42.nl.printmanager.model.Scan;
 
 public class ScanResultActivity extends Activity {
@@ -29,11 +29,9 @@ public class ScanResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
 
-
         final ImageView imageViewStar = (ImageView) findViewById(R.id.ImageViewStar);
         final RelativeLayout RelativeLayoutBack = (RelativeLayout) findViewById(R.id.RelativeButton);
         pref = new SharedPref(this);
-
 
         RelativeLayoutBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,10 +63,13 @@ public class ScanResultActivity extends Activity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        updateLabels();
-
-        if (pref.IsStarred(scan.getName())) {
-            imageViewStar.setImageResource(R.drawable.details_starred);
+        if (scan != null) {
+            updateLabels();
+            if (pref.IsStarred(scan.getName())) {
+                imageViewStar.setImageResource(R.drawable.details_starred);
+            }
+        } else {
+            finish();
         }
 
     }
@@ -89,7 +90,6 @@ public class ScanResultActivity extends Activity {
         TextView textViewPrintedDate = (TextView) findViewById(R.id.textViewPrintedDateValue);
         textViewPrintedDate.setText(this.scan.getPrintDate().toString());
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

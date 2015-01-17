@@ -52,6 +52,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
 
@@ -59,6 +60,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
 
@@ -66,6 +68,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, AccountActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
     }
@@ -76,6 +79,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
 
@@ -83,6 +87,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, MainActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
 
@@ -90,6 +95,7 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, AccountActivity.class);
                 activity.startActivity(intent);
+                activity.finish();
             }
         });
     }

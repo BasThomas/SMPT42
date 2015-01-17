@@ -21,9 +21,7 @@ import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
-import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.Company;
-import smpt42.nl.printmanager.model.HistoryItemRow;
 import smpt42.nl.printmanager.model.Scan;
 
 
@@ -31,14 +29,14 @@ public class OverviewActivity extends Activity {
 
 
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.
-        if(!(view instanceof SearchView)) {
+        if (!(view instanceof SearchView)) {
 
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
@@ -58,8 +56,7 @@ public class OverviewActivity extends Activity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         setupUI(findViewById(R.id.historyParent));
@@ -75,13 +72,13 @@ public class OverviewActivity extends Activity {
         scans.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
         scans.add(new Scan(company2, "DDW", new Date(), new Date(), "barcode5"));
         scans.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
-        ListView lView = (ListView)findViewById(R.id.listView);
+        ListView lView = (ListView) findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
         lView.setAdapter(hAdapter);
 
-        final Button btnDate = (Button)findViewById(R.id.btnDate);
-        final Button btnCompany = (Button)findViewById(R.id.btnCompany);
-        final Button btnStarred = (Button)findViewById(R.id.btnStarred);
+        final Button btnDate = (Button) findViewById(R.id.btnDate);
+        final Button btnCompany = (Button) findViewById(R.id.btnCompany);
+        final Button btnStarred = (Button) findViewById(R.id.btnStarred);
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,10 +120,9 @@ public class OverviewActivity extends Activity {
         });
     }
 
-    public void reorder(ArrayList<Scan> scans, SORT_TYPE type)
-    {
+    public void reorder(ArrayList<Scan> scans, SORT_TYPE type) {
         ScanManager sm = new ScanManager(scans);
-        ListView lView = (ListView)findViewById(R.id.listView);
+        ListView lView = (ListView) findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(type));
         lView.setAdapter(hAdapter);
 

@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
-import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.model.Scan;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.SetTaskBar;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         IntentIntegrator scanIntegrator = new IntentIntegrator(this);
         scanIntegrator.initiateScan();
+        SetTaskBar setTaskBar = new SetTaskBar(this);
     }
 
 
@@ -48,10 +48,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         Intent scanResultIntent = new Intent(this, ScanResultActivity.class);
-        scanResultIntent.putExtra("barcode", scanningResult.getContents());
-        startActivity(scanResultIntent);
+        String contents = scanningResult.getContents();
+        if (contents != null) {
+            scanResultIntent.putExtra("barcode", contents);
+            startActivity(scanResultIntent);
+        }
     }
 }

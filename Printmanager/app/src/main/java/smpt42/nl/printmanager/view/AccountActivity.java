@@ -1,14 +1,10 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +20,6 @@ import java.net.URL;
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.SharedPref;
-import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.User;
 
 public class AccountActivity extends Activity {
@@ -46,6 +41,7 @@ public class AccountActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, OverviewActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -52,8 +52,9 @@ public class GetScanByCode extends AsyncTask<String, Void, Scan> {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            return null;
         }
-
         // Return null when action failed.
         return null;
     }

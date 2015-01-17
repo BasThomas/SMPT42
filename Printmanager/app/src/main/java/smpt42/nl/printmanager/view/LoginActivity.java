@@ -17,8 +17,8 @@ import android.widget.EditText;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.internet.Login;
 import smpt42.nl.printmanager.control.SharedPref;
+import smpt42.nl.printmanager.control.internet.Login;
 import smpt42.nl.printmanager.model.User;
 
 public class LoginActivity extends Activity {
@@ -42,8 +42,7 @@ public class LoginActivity extends Activity {
         pref = new SharedPref(this);
 
 
-        if(pref.IsLoggedIn())
-        {
+        if (pref.IsLoggedIn()) {
             Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
             startActivity(intent);
             finish();
@@ -149,9 +148,7 @@ public class LoginActivity extends Activity {
                 Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
                 startActivity(intent);
                 finish();
-            }
-            else
-            {
+            } else {
                 password.setError("Username or Password incorrect");
                 password.requestFocus();
 
