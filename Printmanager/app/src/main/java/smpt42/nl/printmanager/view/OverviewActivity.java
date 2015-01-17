@@ -62,10 +62,8 @@ public class OverviewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         setupUI(findViewById(R.id.historyParent));
-        SetTaskBar setTaskBar = new SetTaskBar(this);
+        new SetTaskBar(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
-        Company company2 = new Company("test", "test", "test", "test");
 
         ArrayList<Scan> scans = null;
         try {

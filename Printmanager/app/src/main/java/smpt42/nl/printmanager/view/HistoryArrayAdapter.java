@@ -2,6 +2,9 @@ package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 import smpt42.nl.printmanager.R;
@@ -38,6 +43,30 @@ public class HistoryArrayAdapter extends ArrayAdapter<Scan> {
         TextView tbTitle = (TextView) rowView.findViewById(R.id.tbTitle);
         TextView tbCompany = (TextView) rowView.findViewById(R.id.tbCompany);
         ImageView imageStarred = (ImageView) rowView.findViewById(R.id.imageStarred);
+        final ImageView imagePreview = (ImageView) rowView.findViewById(R.id.scan_image);
+        if (itemsArrayList.get(position).getPreviewURL() != null) {
+            new AsyncTask<String, Void, Bitmap>() {
+
+                @Override
+                protected Bitmap doInBackground(String... params) {
+
+                    try {
+                        String urlString = params[0];
+                        URL url = new URL(urlString);
+                        InputStream in = url.openStream();
+                        return BitmapFactory.decodeStream(in);
+                    } catch (Exception e) {
+                        /* TODO log error */
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Bitmap bitmap) {
+                    imagePreview.setImageBitmap(bitmap);
+                }
+            }.execute(itemsArrayList.get(position).getPreviewURL());
+        }
 
         tbTitle.setText(itemsArrayList.get(position).getName());
         tbCompany.setText(itemsArrayList.get(position).getCompany().getName());
