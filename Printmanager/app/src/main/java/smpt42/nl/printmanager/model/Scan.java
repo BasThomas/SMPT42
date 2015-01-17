@@ -1,6 +1,5 @@
 package smpt42.nl.printmanager.model;
 
-import java.lang.Override;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -98,5 +97,25 @@ public class Scan {
     public String getPrintTimeOnly() {
         DateFormat format = new SimpleDateFormat("HH:mm");
         return format.format(printDate);
+    }
+
+    public boolean hasString(String s) {
+        if (name.toLowerCase().contains(s)) {
+            return true;
+        } else if (String.valueOf(scanID).toLowerCase().contains(s)) {
+            return true;
+        } else if (company.hasString(s)) {
+            return true;
+        } else if (scanDate.toString().toLowerCase().contains(s)) {
+            return true;
+        } else if (printDate.toString().toLowerCase().contains(s)) {
+            return true;
+        } else if (barcode.toLowerCase().contains(s)) {
+            return true;
+        } else if (previewURL.toLowerCase().contains(s)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

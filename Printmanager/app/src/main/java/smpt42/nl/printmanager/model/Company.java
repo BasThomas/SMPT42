@@ -62,4 +62,21 @@ public class Company
     public String getAdress() {
         return street + " " + city;
     }
+
+    public boolean hasString(String s) {
+
+        if (name.toLowerCase().contains(s)) {
+            return true;
+        } else if (street.toLowerCase().contains(s)) {
+            return true;
+        } else if (city.toLowerCase().contains(s)) {
+            return true;
+        } else if (telephone.toLowerCase().contains(s)) {
+            return true;
+        } else if (String.valueOf(companyID).toLowerCase().contains(s)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

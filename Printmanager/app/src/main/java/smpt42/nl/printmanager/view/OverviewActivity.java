@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -13,8 +14,10 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -43,7 +46,6 @@ public class OverviewActivity extends Activity {
 
         //Set up touch listener for non-text box views to hide keyboard.
         if (!(view instanceof SearchView)) {
-
             view.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
                     hideSoftKeyboard(OverviewActivity.this);
@@ -91,6 +93,14 @@ public class OverviewActivity extends Activity {
             }
         });
 
+        final EditText editTextFind = (EditText) findViewById(R.id.editTextFind);
+        editTextFind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                filter(v.getText().toString());
+                return true;
+            }
+        });
         final Button btnDate = (Button) findViewById(R.id.btnDate);
         final Button btnCompany = (Button) findViewById(R.id.btnCompany);
         final Button btnStarred = (Button) findViewById(R.id.btnStarred);
@@ -134,6 +144,13 @@ public class OverviewActivity extends Activity {
                 reorder(finalScans, SORT_TYPE.STARRED);
             }
         });
+    }
+
+    private void filter(String s) {
+        ScanManager sm = new ScanManager(scans);
+        ListView lView = (ListView) findViewById(R.id.listView);
+        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(s));
+        lView.setAdapter(hAdapter);
     }
 
     public void reorder(ArrayList<Scan> scans, SORT_TYPE type) {

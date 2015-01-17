@@ -73,7 +73,7 @@
             android:background="@android:drawable/ic_search_category_default" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editTextFind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
