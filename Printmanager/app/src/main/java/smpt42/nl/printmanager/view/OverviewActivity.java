@@ -16,11 +16,13 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.control.internet.GetScans;
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
 
@@ -65,13 +67,14 @@ public class OverviewActivity extends Activity {
         Company company = new Company("Fontys", "Rachelsmolen 1", "Eindhoven", "0681789369");
         Company company2 = new Company("test", "test", "test", "test");
 
-        final ArrayList<Scan> scans = new ArrayList<Scan>();
-        scans.add(new Scan(company2, "Nachtwacht", new Date(), new Date(), "barcode1"));
-        scans.add(new Scan(company, "Marcel K", new Date(), new Date(), "barcode2"));
-        scans.add(new Scan(company2, "Darude", new Date(), new Date(), "barcode3"));
-        scans.add(new Scan(company, "Ribs Factory", new Date(), new Date(), "barcode4"));
-        scans.add(new Scan(company2, "DDW", new Date(), new Date(), "barcode5"));
-        scans.add(new Scan(company, "Pepper's Ghost", new Date(), new Date(), "barcode6"));
+        ArrayList<Scan> scans = null;
+        try {
+            scans = new GetScans().execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         ListView lView = (ListView) findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
         lView.setAdapter(hAdapter);
@@ -79,6 +82,7 @@ public class OverviewActivity extends Activity {
         final Button btnDate = (Button) findViewById(R.id.btnDate);
         final Button btnCompany = (Button) findViewById(R.id.btnCompany);
         final Button btnStarred = (Button) findViewById(R.id.btnStarred);
+        final ArrayList<Scan> finalScans = scans;
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +93,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                reorder(scans, SORT_TYPE.DATE);
+                reorder(finalScans, SORT_TYPE.DATE);
             }
         });
         btnCompany.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +106,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                reorder(scans, SORT_TYPE.COMPANY);
+                reorder(finalScans, SORT_TYPE.COMPANY);
             }
         });
         btnStarred.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +119,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right));
                 btnStarred.setTextColor(Color.WHITE);
 
-                reorder(scans, SORT_TYPE.STARRED);
+                reorder(finalScans, SORT_TYPE.STARRED);
             }
         });
     }

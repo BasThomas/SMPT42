@@ -2,6 +2,7 @@ package smpt42.nl.printmanager.control.internet;
 
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,7 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import smpt42.nl.printmanager.control.JSONfunctions;
 import smpt42.nl.printmanager.model.Company;
@@ -20,36 +20,31 @@ import smpt42.nl.printmanager.model.Scan;
  *
  * Created by Jeroen on 2014-12-19.
  */
-public class GetScans extends AsyncTask<String, Void, List<Scan>> {
+public class GetScans extends AsyncTask<String, Void, ArrayList<Scan>> {
 
     @Override
-    protected List<Scan> doInBackground(String... params) {
-        List<Scan> scans = new ArrayList<>();
-        JSONObject jsonObject = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getPrints.php");
-        int companyID = 0;
-        String companyName = null;
-        String street = null;
-        String city = null;
-        String phone = null;
-        int scanID = 0;
-        String scanName = null;
-        Date scanDate = null;
-        Date printDate = null;
-        String previewURL = null;
+    protected ArrayList<Scan> doInBackground(String... params) {
+        ArrayList<Scan> scans = new ArrayList<>();
+        JSONObject jsonObjectContainer = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getPrints.php");
         try {
-            companyID = Integer.parseInt((String) jsonObject.get("COMPANY_ID"));
-            companyName = (String) jsonObject.get("COMPANY_NAME");
-            street = (String) jsonObject.get("STREET");
-            city = (String) jsonObject.get("CITY");
-            phone = (String) jsonObject.get("PHONE");
-            scanID = Integer.parseInt((String) jsonObject.get("SCAN_ID"));
-            scanName = (String) jsonObject.get("SCAN_NAME");
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            scanDate = format.parse((String) jsonObject.get("SCAN_DATE"));
-            printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
-            previewURL = (String) jsonObject.get("PREVIEW");
+            JSONArray jsonObjects = jsonObjectContainer.getJSONArray("Scans");
+            for (int i = 0 ; i < jsonObjects.length(); i++) {
+                JSONObject jsonObject = jsonObjects.getJSONObject(i);
+                int companyID = Integer.parseInt((String) jsonObject.get("COMPANY_ID"));
+                String companyName = (String) jsonObject.get("COMPANY_NAME");
+                String street = (String) jsonObject.get("STREET");
+                String city = (String) jsonObject.get("CITY");
+                String phone = (String) jsonObject.get("PHONE");
+                int scanID = Integer.parseInt((String) jsonObject.get("SCAN_ID"));
+                String scanName = (String) jsonObject.get("SCAN_NAME");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date scanDate = format.parse((String) jsonObject.get("SCAN_DATE"));
+                Date printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
+                String previewURL = (String) jsonObject.get("PREVIEW");
+                String barcode = (String) jsonObject.get("BARCODE");
 
-            scans.add(new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]));
+                scans.add(new Scan(scanID, new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, barcode, previewURL));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {

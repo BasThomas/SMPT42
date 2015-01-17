@@ -19,6 +19,7 @@ public class Scan {
     private boolean isStarred;
     private SCAN_STATUS status;
     private String barcode;
+    private String previewURL;
 
 	public Scan(Company company, String name, Date scanDate, Date printDate, String barcode) {
 		this.company = company;
@@ -35,6 +36,16 @@ public class Scan {
         this.scanDate = scanDate;
         this.printDate = printDate;
         this.barcode = barcode;
+    }
+
+    public Scan(int scanID, Company company, String name, Date scanDate, Date printDate, String barcode, String previewURL) {
+        this.scanID = scanID;
+        this.company = company;
+        this.name = name;
+        this.scanDate = scanDate;
+        this.printDate = printDate;
+        this.barcode = barcode;
+        this.previewURL = previewURL;
     }
 
     @Override
@@ -69,4 +80,8 @@ public class Scan {
     public void setStatus(SCAN_STATUS status) { this.status = status; }
 
     public String getBarcode() { return barcode; }
+
+    public String getPreviewURL() {
+        return previewURL;
+    }
 }
