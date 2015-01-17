@@ -12,24 +12,35 @@ import java.util.Date;
 
 import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
+import smpt42.nl.printmanager.model.User;
 
 /**
  * Momentum by Wout
  * Created by Jeroen on 2014-12-19.
  */
-public class Login extends AsyncTask<String, Void, Boolean> {
+public class Login extends AsyncTask<String, Void, User> {
 
     @Override
-    protected Boolean doInBackground(String... params) {
+    protected User doInBackground(String... params) {
         JSONObject jsonObject = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/login.php?username=" + params[0] + "&password=" + params[1]);
-        boolean success =false;
+        User returner = null;
         try {
-            success = (boolean) jsonObject.get("SUCCESS");
+            if ((boolean) jsonObject.get("SUCCESS")){
+                String surname = (String) jsonObject.get("SURNAME");
+                String lastname = (String) jsonObject.get("LASTNAME");
+                String email = (String) jsonObject.get("EMAIL");
+                String companyName = (String) jsonObject.get("COMPANY_NAME");
+                String street = (String) jsonObject.get("STREET");
+                String city = (String) jsonObject.get("CITY");
+                String telephone = (String) jsonObject.get("TELEPHONE");
+                String preview = (String) jsonObject.get("PREVIEW");
+                returner = new User(new Company(companyName, street, city, telephone), params[0], surname, lastname, email);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (NullPointerException e){
-            success = false;
+            returner = null;
         }
-        return success;
+        return returner;
     }
 }

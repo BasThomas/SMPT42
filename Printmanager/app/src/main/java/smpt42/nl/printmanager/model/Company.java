@@ -58,4 +58,8 @@ public class Company
 	}
 
     public int getCompanyID() { return companyID; }
+
+    public String getAdress() {
+        return street + " " + city;
+    }
 }

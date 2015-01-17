@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SetTaskBar;
@@ -30,12 +31,9 @@ public class AccountActivity extends Activity {
         SetTaskBar setTaskBar = new SetTaskBar(this);
         pref = new SharedPref(this);
 
-        Company company = new Company("", "", "", "");
-        User user = new User(company, "Bas", "bas@basbroek.nl");
+        User user = pref.getUser();
 
         final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
-        final Button buttonLogout = (Button) findViewById(R.id.logoutBtn);
-
         ImageButtonBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, OverviewActivity.class);
@@ -43,6 +41,7 @@ public class AccountActivity extends Activity {
             }
         });
 
+        final Button buttonLogout = (Button) findViewById(R.id.logoutBtn);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 pref.RemoveLogin();
@@ -52,6 +51,21 @@ public class AccountActivity extends Activity {
                 finish();
             }
         });
+
+        final TextView textViewName = (TextView) findViewById(R.id.textViewName);
+        textViewName.setText(user.getName());
+
+        final TextView textViewNameValue = (TextView) findViewById(R.id.textViewNameValue);
+        textViewNameValue.setText(user.getName());
+
+        final TextView textViewCompanyValue = (TextView) findViewById(R.id.textViewCompanyValue);
+        textViewCompanyValue.setText(user.getCompany().getName());
+
+        final TextView textViewAdresValue = (TextView) findViewById(R.id.textViewAdresValue);
+        textViewAdresValue.setText(user.getCompany().getAdress());
+
+        final TextView textViewTelValue = (TextView) findViewById(R.id.textViewTelValue);
+        textViewTelValue.setText(user.getCompany().getTelephone());
     }
 
 

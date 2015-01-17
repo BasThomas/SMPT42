@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import smpt42.nl.printmanager.model.Company;
+import smpt42.nl.printmanager.model.User;
 import smpt42.nl.printmanager.view.LoginActivity;
 import smpt42.nl.printmanager.view.OverviewActivity;
 
@@ -71,5 +73,29 @@ public class SharedPref {
         editor.commit();
     }
 
+    public void setUser(User user) {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_user", Context.MODE_PRIVATE);
+        sharedPref.edit().putString("SURNAME", user.getSurname()).apply();
+        sharedPref.edit().putString("LASTNAME", user.getLastname()).apply();
+        sharedPref.edit().putString("EMAIL", user.getEmail()).apply();
+        sharedPref.edit().putString("COMPANY_NAME", user.getCompany().getName()).apply();
+        sharedPref.edit().putString("STREET", user.getCompany().getStreet()).apply();
+        sharedPref.edit().putString("CITY", user.getCompany().getCity()).apply();
+        sharedPref.edit().putString("TELEPHONE", user.getCompany().getTelephone()).apply();
+        sharedPref.edit().putString("PREVIEW", user.getPreviewURL()).apply();
+    }
 
+    public User getUser() {
+        SharedPreferences sharedPref = activity.getSharedPreferences("printmanager_user", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("USERNAME", null);
+        String surname = sharedPref.getString("SURNAME", null);
+        String lastname = sharedPref.getString("LASTNAME", null);
+        String email = sharedPref.getString("EMAIL", null);
+        String companyName = sharedPref.getString("COMPANY_NAME", null);
+        String street = sharedPref.getString("STREET", null);
+        String city = sharedPref.getString("CITY", null);
+        String telephone = sharedPref.getString("TELEPHONE", null);
+        String preview = sharedPref.getString("PREVIEW", null);
+        return new User(new Company(companyName, street, city, telephone), username, surname, lastname, email);
+    }
 }

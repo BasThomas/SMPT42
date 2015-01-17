@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.Login;
 import smpt42.nl.printmanager.control.SharedPref;
+import smpt42.nl.printmanager.model.User;
 
 public class LoginActivity extends Activity {
 
@@ -135,20 +136,18 @@ public class LoginActivity extends Activity {
 
     public void LogIn(boolean hasFocus, EditText username, EditText password) {
         if (hasFocus) {
-            boolean success = false;
+            User user = null;
             Login login = new Login();
             try {
-                 success = login.execute(username.getText().toString(), password.getText().toString()).get();
+                user = login.execute(username.getText().toString(), password.getText().toString()).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            if (success) {
-
-
+            if (user != null) {
                 pref.AddLogin(username.getText().toString(), password.getText().toString());
-
+                pref.setUser(user);
                 Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
                 startActivity(intent);
                 finish();
@@ -156,7 +155,6 @@ public class LoginActivity extends Activity {
             }
             else
             {
-
                 password.setError("Username or Password incorrect");
                 password.requestFocus();
 
