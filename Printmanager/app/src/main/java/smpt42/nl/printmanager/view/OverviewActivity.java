@@ -85,7 +85,7 @@ public class OverviewActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String contents = scans.get(position).getBarcode();
                 if (contents != null) {
-                    scanResultIntent.putExtra("scan", contents);
+                    scanResultIntent.putExtra("barcode", contents);
                     startActivity(scanResultIntent);
                 }
             }

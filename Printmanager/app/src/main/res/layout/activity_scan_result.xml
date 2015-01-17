@@ -63,6 +63,7 @@
                     android:textSize="30dp" />
 
                 <ImageView
+                    android:id="@+id/scanPreview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"

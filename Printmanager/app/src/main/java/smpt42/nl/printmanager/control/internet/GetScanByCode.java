@@ -46,7 +46,7 @@ public class GetScanByCode extends AsyncTask<String, Void, Scan> {
             previewURL = (String) jsonObject.get("PREVIEW");
 
             // Return Scanobject when parsing succeeded.
-            return new Scan(new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0]);
+            return new Scan(scanID, new Company(companyID, companyName, street, city, phone), scanName, scanDate, printDate, params[0], previewURL);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {

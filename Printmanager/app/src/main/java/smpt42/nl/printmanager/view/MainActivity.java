@@ -11,6 +11,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.SetTaskBar;
+import smpt42.nl.printmanager.control.internet.UpdateScanDate;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -53,8 +54,10 @@ public class MainActivity extends ActionBarActivity {
         Intent scanResultIntent = new Intent(this, ScanResultActivity.class);
         String contents = scanningResult.getContents();
         if (contents != null) {
+            new UpdateScanDate().execute(contents);
             scanResultIntent.putExtra("barcode", contents);
             startActivity(scanResultIntent);
+            finish();
         }
     }
 }

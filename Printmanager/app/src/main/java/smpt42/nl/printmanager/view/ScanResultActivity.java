@@ -2,7 +2,11 @@ package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,10 +14,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
+import smpt42.nl.printmanager.control.CashManager;
+import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.control.internet.GetScanByCode;
@@ -64,14 +75,51 @@ public class ScanResultActivity extends Activity {
             e.printStackTrace();
         }
         if (scan != null) {
-            updateLabels();
-            if (pref.IsStarred(scan)) {
-                imageViewStar.setImageResource(R.drawable.details_starred);
+            final ImageView scanPreview = (ImageView) findViewById(R.id.scanPreview);
+            if (scan.getPreviewURL() != null) {
+                Bitmap bitmapFromMemCache = CashManager.getBitmapFromMemCache(scan.getPreviewURL());
+                if (bitmapFromMemCache != null) {
+                    scanPreview.setImageBitmap(bitmapFromMemCache);
+                } else {
+                    new AsyncTask<String, Void, Bitmap>() {
+
+                        @Override
+                        protected Bitmap doInBackground(String... params) {
+
+                            try {
+                                String urlString = params[0];
+                                URL url = new URL(urlString);
+                                URLConnection urlConnection = url.openConnection();
+                                urlConnection.setConnectTimeout(500);
+                                urlConnection.setReadTimeout(500);
+                                InputStream in = urlConnection.getInputStream();
+                                return BitmapFactory.decodeStream(in);
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                System.err.println(e.getMessage());
+                            }
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Bitmap bitmap) {
+                            if (bitmap != null) {
+                                scanPreview.setImageBitmap(bitmap);
+                                CashManager.addBitmapToMemoryCache(scan.getPreviewURL(), bitmap);
+                            }
+                        }
+                    }.execute(scan.getPreviewURL());
+                }
+                updateLabels();
+                if (pref.IsStarred(scan)) {
+                    imageViewStar.setImageResource(R.drawable.details_starred);
+                }
             }
         } else {
             finish();
         }
-
+        updateLabels();
     }
 
     private void updateLabels() {
@@ -86,7 +134,7 @@ public class ScanResultActivity extends Activity {
         TextView textViewTel = (TextView) findViewById(R.id.textViewTelValue);
         textViewTel.setText(this.scan.getCompany().getTelephone());
         TextView textViewScannedDate = (TextView) findViewById(R.id.textViewScannedDateValue);
-        textViewScannedDate.setText(Calendar.getInstance().getTime().toString());
+        textViewScannedDate.setText(this.scan.getScanDate().toString());
         TextView textViewPrintedDate = (TextView) findViewById(R.id.textViewPrintedDateValue);
         textViewPrintedDate.setText(this.scan.getPrintDate().toString());
     }
