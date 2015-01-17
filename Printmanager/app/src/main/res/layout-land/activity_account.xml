@@ -90,11 +90,12 @@
 
     <TableLayout
         android:id="@+id/Table"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:paddingRight="50dp"
+        android:paddingLeft="50dp"
         android:layout_below="@+id/DetailsArrow"
-        android:background="@color/white"
-        android:paddingLeft="10dp">
+        android:background="@color/white" >
 
 
         <TableRow>
@@ -175,14 +176,16 @@
         </TableRow>
     </TableLayout>
 
+
     <LinearLayout
         android:id="@+id/logoutLinear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@+id/bottomButtonImage"
-        android:layout_below="@id/Table"
         android:layout_gravity="center"
-        android:gravity="center">
+        android:layout_toRightOf="@+id/Table"
+        android:gravity="center"
+        android:layout_alignTop="@+id/Table">
 
         <Button
             android:id="@+id/logoutBtn"
