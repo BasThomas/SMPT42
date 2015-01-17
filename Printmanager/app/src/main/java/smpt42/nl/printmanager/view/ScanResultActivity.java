@@ -1,27 +1,16 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
@@ -41,12 +30,12 @@ public class ScanResultActivity extends Activity {
         setContentView(R.layout.activity_scan_result);
 
 
-        final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
         final ImageView imageViewStar = (ImageView) findViewById(R.id.ImageViewStar);
+        final RelativeLayout RelativeLayoutBack = (RelativeLayout) findViewById(R.id.RelativeButton);
         pref = new SharedPref(this);
 
 
-        ImageButtonBack.setOnClickListener(new View.OnClickListener() {
+        RelativeLayoutBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(ScanResultActivity.this, OverviewActivity.class);
                 startActivity(intent);
@@ -60,7 +49,7 @@ public class ScanResultActivity extends Activity {
                     pref.RemoveStarred(scan.getName());
                 } else {
                     imageViewStar.setImageResource(R.drawable.details_starred);
-                    pref.SetStarred(scan.getName());
+                    pref.AddStarred(scan.getName());
                 }
 
             }

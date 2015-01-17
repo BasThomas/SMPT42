@@ -17,16 +17,21 @@
         android:textColor="@color/black"
         android:textSize="17dp" />
 
+    <RelativeLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/RelativeButton">
 
-    <ImageButton
-        android:id="@+id/backImageButton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="12.5dp"
-        android:layout_marginLeft="5dp"
-        android:background="@drawable/arrow_red" />
+        <ImageButton
+            android:id="@+id/backImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="12.5dp"
+            android:background="@drawable/arrow_red" />
+    </RelativeLayout>
 
     <ScrollView
         android:id="@+id/scroll"
@@ -60,18 +65,18 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
                     android:padding="10dp"
-                    android:src="@drawable/test_picture"
-                    android:layout_alignParentLeft="true"/>
+                    android:src="@drawable/test_picture" />
 
                 <ImageView
+                    android:id="@+id/ImageViewStar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/details_star"
-                    android:paddingTop="25dp"
                     android:paddingBottom="25dp"
-                    android:id="@+id/ImageViewStar"/>
+                    android:paddingTop="25dp"
+                    android:src="@drawable/details_star" />
 
             </RelativeLayout>
 
