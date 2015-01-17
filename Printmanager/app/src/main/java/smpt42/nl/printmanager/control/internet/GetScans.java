@@ -36,7 +36,7 @@ public class GetScans extends AsyncTask<String, Void, ArrayList<Scan>> {
                 String phone = (String) jsonObject.get("PHONE");
                 int scanID = Integer.parseInt((String) jsonObject.get("SCAN_ID"));
                 String scanName = (String) jsonObject.get("SCAN_NAME");
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date scanDate = format.parse((String) jsonObject.get("SCAN_DATE"));
                 Date printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
                 String previewURL = (String) jsonObject.get("PREVIEW");

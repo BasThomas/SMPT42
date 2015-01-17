@@ -40,7 +40,7 @@ public class GetScanByCode extends AsyncTask<String, Void, Scan> {
             phone = (String) jsonObject.get("PHONE");
             scanID = Integer.parseInt((String) jsonObject.get("SCAN_ID"));
             scanName = (String) jsonObject.get("SCAN_NAME");
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             scanDate = format.parse((String) jsonObject.get("SCAN_DATE"));
             printDate = format.parse((String) jsonObject.get("PRINT_DATE"));
             previewURL = (String) jsonObject.get("PREVIEW");

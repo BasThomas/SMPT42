@@ -1,6 +1,7 @@
 package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,9 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -27,6 +32,7 @@ import smpt42.nl.printmanager.model.Scan;
 
 public class OverviewActivity extends Activity {
 
+    ArrayList<Scan> scans = null;
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -63,7 +69,6 @@ public class OverviewActivity extends Activity {
         new SetTaskBar(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        ArrayList<Scan> scans = null;
         try {
             scans = new GetScans().execute().get();
         } catch (InterruptedException e) {
@@ -74,6 +79,17 @@ public class OverviewActivity extends Activity {
         ListView lView = (ListView) findViewById(R.id.listView);
         HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, scans);
         lView.setAdapter(hAdapter);
+        final Intent scanResultIntent = new Intent(this, ScanResultActivity.class);
+        lView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String contents = scans.get(position).getBarcode();
+                if (contents != null) {
+                    scanResultIntent.putExtra("scan", contents);
+                    startActivity(scanResultIntent);
+                }
+            }
+        });
 
         final Button btnDate = (Button) findViewById(R.id.btnDate);
         final Button btnCompany = (Button) findViewById(R.id.btnCompany);

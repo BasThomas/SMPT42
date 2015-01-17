@@ -19,14 +19,14 @@ public class ScanManager {
     };
     public static Comparator<Scan> sortByCompany = new Comparator<Scan>() {
         public int compare(Scan scan1, Scan scan2) {
-            return scan1.getCompany().toString().compareTo(scan2.getCompany().toString());
+            return scan1.getCompany().getName().compareTo(scan2.getCompany().getName());
         }
     };
     public static Comparator<Scan> sortByStarred = new Comparator<Scan>() {
         public int compare(Scan scan1, Scan scan2) {
             Boolean s1 = scan1.getIsStarred();
             Boolean s2 = scan2.getIsStarred();
-            return s1.compareTo(s2);
+            return s2.compareTo(s1);
         }
     };
     ArrayList<Scan> scans;
