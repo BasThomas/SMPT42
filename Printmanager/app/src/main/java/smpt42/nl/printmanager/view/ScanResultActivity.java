@@ -53,7 +53,7 @@ public class ScanResultActivity extends Activity {
             }
         });
 
-        SetTaskBar setTaskBar = new SetTaskBar(this);
+        new SetTaskBar(this);
 
         GetScanByCode getScanByCode = new GetScanByCode();
         try {

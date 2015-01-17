@@ -31,8 +31,8 @@ public class AccountActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        SetTaskBar setTaskBar = new SetTaskBar(this);
         pref = new SharedPref(this);
+        new SetTaskBar(this);
 
         User user = pref.getUser();
 

@@ -1,6 +1,8 @@
 package smpt42.nl.printmanager.model;
 
 import java.lang.Override;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import smpt42.nl.printmanager.model.enums.SCAN_STATUS;
@@ -86,5 +88,15 @@ public class Scan {
 
     public String getPreviewURL() {
         return previewURL;
+    }
+
+    public String getPrintDateOnly() {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(printDate);
+    }
+
+    public String getPrintTimeOnly() {
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(printDate);
     }
 }
