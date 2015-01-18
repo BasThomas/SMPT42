@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +17,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.model.User;
 
@@ -35,15 +33,6 @@ public class AccountActivity extends Activity {
         new SetTaskBar(this);
 
         User user = pref.getUser();
-
-        final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
-        ImageButtonBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, OverviewActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         final Button buttonLogout = (Button) findViewById(R.id.logoutBtn);
         buttonLogout.setOnClickListener(new View.OnClickListener() {

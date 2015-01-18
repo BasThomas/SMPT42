@@ -75,8 +75,8 @@ public class ScanManager {
 
     public ArrayList<Scan> getScans(String s) {
         ArrayList<Scan> returner = new ArrayList<>();
-        for (Scan scan : scans){
-            if (scan.hasString(s)){
+        for (Scan scan : scans) {
+            if (scan.hasString(s)) {
                 returner.add(scan);
             }
         }

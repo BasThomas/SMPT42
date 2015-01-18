@@ -16,7 +16,6 @@ import smpt42.nl.printmanager.model.Company;
 import smpt42.nl.printmanager.model.Scan;
 
 /**
- *
  * Created by Jeroen on 2014-12-19.
  */
 public class GetScans extends AsyncTask<String, Void, ArrayList<Scan>> {
@@ -27,7 +26,7 @@ public class GetScans extends AsyncTask<String, Void, ArrayList<Scan>> {
         JSONObject jsonObjectContainer = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getPrints.php");
         try {
             JSONArray jsonObjects = jsonObjectContainer.getJSONArray("Scans");
-            for (int i = 0 ; i < jsonObjects.length(); i++) {
+            for (int i = 0; i < jsonObjects.length(); i++) {
                 JSONObject jsonObject = jsonObjects.getJSONObject(i);
                 int companyID = Integer.parseInt((String) jsonObject.get("COMPANY_ID"));
                 String companyName = (String) jsonObject.get("COMPANY_NAME");

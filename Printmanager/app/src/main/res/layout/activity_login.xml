@@ -57,7 +57,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text"
-        android:imeOptions="actionNext"
+        android:imeOptions="actionGo"
         android:paddingLeft="10dp"
         android:text="@string/password"
         android:textColor="@color/light_red" />

@@ -19,7 +19,7 @@ public class Login extends AsyncTask<String, Void, User> {
         JSONObject jsonObject = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/login.php?username=" + params[0] + "&password=" + params[1]);
         User returner = null;
         try {
-            if ((boolean) jsonObject.get("SUCCESS")){
+            if ((boolean) jsonObject.get("SUCCESS")) {
                 String surname = (String) jsonObject.get("SURNAME");
                 String lastname = (String) jsonObject.get("LASTNAME");
                 String email = (String) jsonObject.get("EMAIL");

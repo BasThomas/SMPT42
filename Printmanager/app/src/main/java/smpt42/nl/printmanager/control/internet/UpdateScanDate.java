@@ -5,14 +5,6 @@ import android.os.AsyncTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import smpt42.nl.printmanager.model.Company;
-import smpt42.nl.printmanager.model.Scan;
-
 /**
  * Momentum by Wout
  * Created by Jeroen on 2014-12-19.

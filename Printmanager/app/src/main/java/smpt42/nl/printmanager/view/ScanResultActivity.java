@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,26 +20,43 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.control.CashManager;
-import smpt42.nl.printmanager.control.ScanManager;
-import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.control.internet.GetScanByCode;
 import smpt42.nl.printmanager.model.Scan;
+
 
 public class ScanResultActivity extends Activity {
 
     private Scan scan;
     private SharedPref pref;
+    private static final int RESULT_NOT_FOUND = 8128;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_result);
+
+        if (getIntent().getBooleanExtra("fromScanner", false)) {
+            ImageView imageView = (ImageView) findViewById(R.id.scanImage);
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.qr_red));
+            imageView = (ImageView) findViewById(R.id.historyImage);
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.history));
+            TextView textView = (TextView) findViewById(R.id.scanText);
+            textView.setTextColor(Color.RED);
+            textView = (TextView) findViewById(R.id.historyText);
+            textView.setTextColor(Color.BLACK);
+        }
+
+        final ImageButton ImageButtonBack = (ImageButton) findViewById(R.id.backImageButton);
+        ImageButtonBack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         final ImageView imageViewStar = (ImageView) findViewById(R.id.ImageViewStar);
         final RelativeLayout RelativeLayoutBack = (RelativeLayout) findViewById(R.id.RelativeButton);
@@ -111,15 +129,16 @@ public class ScanResultActivity extends Activity {
                         }
                     }.execute(scan.getPreviewURL());
                 }
-                updateLabels();
                 if (pref.IsStarred(scan)) {
                     imageViewStar.setImageResource(R.drawable.details_starred);
                 }
             }
+            updateLabels();
+            setResult(RESULT_OK);
         } else {
+            setResult(RESULT_NOT_FOUND);
             finish();
         }
-        updateLabels();
     }
 
     private void updateLabels() {

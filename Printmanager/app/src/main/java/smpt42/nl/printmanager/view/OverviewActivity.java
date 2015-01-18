@@ -13,14 +13,12 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -28,7 +26,6 @@ import java.util.concurrent.ExecutionException;
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.model.enums.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
-import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.internet.GetScans;
 import smpt42.nl.printmanager.model.Scan;
 
@@ -88,7 +85,7 @@ public class OverviewActivity extends Activity {
                 String contents = scans.get(position).getBarcode();
                 if (contents != null) {
                     scanResultIntent.putExtra("barcode", contents);
-                    startActivity(scanResultIntent);
+                    startActivityForResult(scanResultIntent, 0);
                 }
             }
         });
@@ -144,6 +141,7 @@ public class OverviewActivity extends Activity {
                 reorder(finalScans, SORT_TYPE.STARRED);
             }
         });
+        reorder(finalScans, SORT_TYPE.DATE);
     }
 
     private void filter(String s) {
@@ -181,5 +179,12 @@ public class OverviewActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK){
+            finish();
+        }
     }
 }

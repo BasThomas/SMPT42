@@ -10,19 +10,21 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.SetTaskBar;
 import smpt42.nl.printmanager.control.internet.UpdateScanDate;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    private IntentIntegrator scanIntegrator;
+    private static final int RESULT_NOT_FOUND = 8128;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+        scanIntegrator = new IntentIntegrator(this);
         scanIntegrator.initiateScan();
-        SetTaskBar setTaskBar = new SetTaskBar(this);
+        new SetTaskBar(this);
     }
 
 
@@ -50,14 +52,18 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        Intent scanResultIntent = new Intent(this, ScanResultActivity.class);
-        String contents = scanningResult.getContents();
-        if (contents != null) {
-            new UpdateScanDate().execute(contents);
-            scanResultIntent.putExtra("barcode", contents);
-            startActivity(scanResultIntent);
-            finish();
+        if (requestCode != 0) {
+            IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+            Intent scanResultIntent = new Intent(this, ScanResultActivity.class);
+            String contents = scanningResult.getContents();
+            if (contents != null) {
+                new UpdateScanDate().execute(contents);
+                scanResultIntent.putExtra("barcode", contents);
+                scanResultIntent.putExtra("fromScanner", true);
+                startActivityForResult(scanResultIntent, 0);
+            }
+        } else if (resultCode != RESULT_NOT_FOUND) {
+            scanIntegrator.initiateScan();
         }
     }
 }

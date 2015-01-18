@@ -77,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:imeOptions="actionSearch"
             android:hint="Search"
             android:maxLines="1"
             android:textAlignment="center"

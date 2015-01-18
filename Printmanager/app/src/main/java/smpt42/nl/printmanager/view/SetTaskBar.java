@@ -1,22 +1,15 @@
-package smpt42.nl.printmanager.control;
+package smpt42.nl.printmanager.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.net.ContentHandler;
 
 import smpt42.nl.printmanager.R;
 import smpt42.nl.printmanager.view.AccountActivity;
 import smpt42.nl.printmanager.view.MainActivity;
 import smpt42.nl.printmanager.view.OverviewActivity;
-import smpt42.nl.printmanager.view.ScanResultActivity;
 
 /**
  * Created by Mark on 9-1-2015.
@@ -52,22 +45,35 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);
                 activity.startActivity(intent);
+                activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
         });
 
-        IVscan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
-            }
-        });
+
+        if (activity.getIntent().getBooleanExtra("fromScanner", false)) {
+            IVscan.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    activity.setResult(Activity.RESULT_CANCELED);
+                    activity.finish();
+                }
+            });
+        } else {
+            IVscan.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.startActivity(intent);
+                    activity.setResult(Activity.RESULT_CANCELED);
+                    activity.finish();
+                }
+            });
+        }
 
         IVaccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, AccountActivity.class);
                 activity.startActivity(intent);
+                activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
         });
@@ -79,22 +85,34 @@ public class SetTaskBar  {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);
                 activity.startActivity(intent);
+                activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
         });
 
-        TVscan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-                activity.finish();
-            }
-        });
+        if (activity.getIntent().getBooleanExtra("fromScanner", false)) {
+            TVscan.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    activity.setResult(Activity.RESULT_CANCELED);
+                    activity.finish();
+                }
+            });
+        } else {
+            TVscan.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.startActivity(intent);
+                    activity.setResult(Activity.RESULT_CANCELED);
+                    activity.finish();
+                }
+            });
+        }
 
         TVaccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, AccountActivity.class);
                 activity.startActivity(intent);
+                activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
         });

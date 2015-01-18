@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- *
  * Created by Jeroen on 2014-12-19.
  */
 public class GetImage extends AsyncTask<String, Void, Drawable> {
