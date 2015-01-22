@@ -95,7 +95,7 @@ public class HistoryArrayAdapter extends ArrayAdapter<Scan> {
         tbDate.setText(scan.getPrintDateOnly());
         tbTime.setText(scan.getPrintTimeOnly());
         if (pref.IsStarred(scan)) {
-            imageStarred.setImageResource(R.drawable.history_starred);
+            imageStarred.setImageResource(R.drawable.history_starred_dark);
         } else {
             imageStarred.setImageResource(R.drawable.history_starred_white);
         }

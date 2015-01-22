@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +35,24 @@ import smpt42.nl.printmanager.model.Scan;
 public class OverviewActivity extends Activity {
 
     ArrayList<Scan> scans = null;
+    EditText editTextFind;
+    TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            filter(editTextFind.getText().toString());
+
+        }
+    };
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -98,14 +118,16 @@ public class OverviewActivity extends Activity {
             }
         });
 
-        final EditText editTextFind = (EditText) findViewById(R.id.editTextFind);
-        editTextFind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        editTextFind = (EditText) findViewById(R.id.editTextFind);
+        /*editTextFind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 filter(v.getText().toString());
                 return true;
             }
-        });
+        });*/
+        editTextFind.addTextChangedListener(textWatcher);
+
         final Button btnDate = (Button) findViewById(R.id.btnDate);
         final Button btnCompany = (Button) findViewById(R.id.btnCompany);
         final Button btnStarred = (Button) findViewById(R.id.btnStarred);
