@@ -175,9 +175,10 @@ public class OverviewActivity extends Activity {
     }
 
     private void filter(String s) {
+        String lowerS = s.toLowerCase();
         ScanManager sm = new ScanManager(scans);
         ListView lView = (ListView) findViewById(R.id.listView);
-        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(s));
+        HistoryArrayAdapter hAdapter = new HistoryArrayAdapter(this, sm.getScans(lowerS));
         lView.setAdapter(hAdapter);
     }
 
