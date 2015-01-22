@@ -32,16 +32,16 @@
 
         <Button
             android:id="@+id/btnDate"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:background="@drawable/sort_button_left"
-            android:text="Date"
+            android:text="Scan Date"
 
             android:textColor="#fff" />
 
         <Button
             android:id="@+id/btnCompany"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:background="@drawable/sort_button_centre_inactive"
             android:text="Company"
@@ -49,7 +49,7 @@
 
         <Button
             android:id="@+id/btnStarred"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:background="@drawable/sort_button_right_inactive"
             android:text="Starred"
