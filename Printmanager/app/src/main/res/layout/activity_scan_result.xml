@@ -101,9 +101,9 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="@string/details"
+                        android:text="DETAILS"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -125,104 +125,119 @@
                 android:paddingLeft="10dp">
 
 
-                <TableRow>
+                <TableRow
+                    android:background="@drawable/tablerow">
 
                     <TextView
                         android:layout_height="40dp"
                         android:paddingTop="10dp"
                         android:text="@string/name"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewNameValue"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:paddingTop="10dp"
+                        android:layout_marginTop="0.5dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="10dp"
+
+                    android:background="@drawable/tablerow">
 
                     <TextView
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:text="@string/company"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewCompanyValue"
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:layout_marginLeft="20dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tablerow">
 
                     <TextView
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:text="@string/address"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewAdresValue"
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:layout_marginLeft="20dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tablerow">
 
                     <TextView
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:text="@string/tel"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewTelValue"
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:layout_marginLeft="20dp"
                         android:text="Tekst hier"
                         android:textColor="@color/red"
                         android:textSize="15dp" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tablerow">
 
                     <TextView
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:text="@string/scanned_date"
+                        android:layout_marginTop="-8dp"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewScannedDateValue"
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:layout_marginLeft="20dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
                 </TableRow>
 
-                <TableRow>
+                <TableRow
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/tablerow">
 
                     <TextView
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:text="@string/printed_date"
+                        android:layout_marginTop="-8dp"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/textViewPrintedDateValue"
-                        android:layout_height="40dp"
+                        android:layout_height="32dp"
                         android:layout_marginLeft="20dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
@@ -248,9 +263,9 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:text="@string/status"
+                        android:text="STATUS"
                         android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:textSize="12dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"

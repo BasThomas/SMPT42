@@ -97,6 +97,7 @@
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="12.5dp"
+        android:layout_marginRight="0dp"
         android:src="@drawable/oce_pijltje" />
 
 
