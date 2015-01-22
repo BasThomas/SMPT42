@@ -100,22 +100,10 @@ public class Scan {
     }
 
     public boolean hasString(String s) {
-        if (name.toLowerCase().contains(s)) {
+        if (this.name.toLowerCase().startsWith(s)) {
             return true;
-        } else if (String.valueOf(scanID).toLowerCase().contains(s)) {
-            return true;
-        } else if (company.hasString(s)) {
-            return true;
-        } else if (scanDate.toString().toLowerCase().contains(s)) {
-            return true;
-        } else if (printDate.toString().toLowerCase().contains(s)) {
-            return true;
-        } else if (barcode.toLowerCase().contains(s)) {
-            return true;
-        } else if (previewURL.toLowerCase().contains(s)) {
-            return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }
