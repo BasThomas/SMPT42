@@ -41,8 +41,8 @@
 
             <ImageView
                 android:id="@+id/imageStarred"
-                android:layout_width="25dp"
-                android:layout_height="23.5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
                 android:src="@drawable/history_starred" />
