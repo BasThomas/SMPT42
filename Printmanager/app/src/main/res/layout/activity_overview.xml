@@ -61,7 +61,7 @@
     <LinearLayout
         android:id="@+id/searchBarLabel"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:layout_below="@+id/linearLayout"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -82,10 +82,11 @@
             android:layout_weight="1"
             android:imeOptions="actionSearch"
             android:hint="SEARCH"
-            android:textColor="@color/light_grey"
+            android:textColorHint="@color/light_grey"
             android:maxLines="1"
             android:background="@drawable/edit_text"
-            android:layout_margin="10dp"
+            android:layout_margin="7.5dp"
+
             android:gravity="center"
             android:textSize="12dp" />
     </LinearLayout>

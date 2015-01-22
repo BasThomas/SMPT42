@@ -12,6 +12,7 @@
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="10dp"
+        android:layout_marginLeft="2.5dp"
         android:padding="5dp"
         android:src="@drawable/test_picture" />
 
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="-0.5dp"
+                android:layout_marginTop="0dp"
                 android:text="COMPANY"
                 android:textColor="#000"
                 android:textSize="10dp" />
