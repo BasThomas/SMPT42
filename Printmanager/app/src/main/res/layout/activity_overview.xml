@@ -32,27 +32,29 @@
 
         <Button
             android:id="@+id/btnDate"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
             android:background="@drawable/sort_button_left"
-            android:text="Scan Date"
-
+            android:text="SCAN DATE"
+            android:textSize="10dp"
             android:textColor="#fff" />
 
         <Button
             android:id="@+id/btnCompany"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
             android:background="@drawable/sort_button_centre_inactive"
-            android:text="Company"
+            android:text="COMPANY"
+            android:textSize="10dp"
             android:textColor="#f00" />
 
         <Button
             android:id="@+id/btnStarred"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
             android:background="@drawable/sort_button_right_inactive"
-            android:text="Starred"
+            android:text="STARRED"
+            android:textSize="10dp"
             android:textColor="#f00" />
     </LinearLayout>
 
