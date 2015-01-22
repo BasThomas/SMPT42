@@ -142,7 +142,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                filter(editTextFind.getText().toString());
+                editTextFind.setText("");
                 reorder(finalScans, SORT_TYPE.DATE);
             }
         });
@@ -156,7 +156,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right_inactive));
                 btnStarred.setTextColor(Color.RED);
 
-                filter(editTextFind.getText().toString());
+                editTextFind.setText("");
                 reorder(finalScans, SORT_TYPE.COMPANY);
             }
         });
@@ -170,7 +170,7 @@ public class OverviewActivity extends Activity {
                 btnStarred.setBackground(getResources().getDrawable(R.drawable.sort_button_right));
                 btnStarred.setTextColor(Color.WHITE);
 
-                filter(editTextFind.getText().toString());
+                editTextFind.setText("");
                 reorder(finalScans, SORT_TYPE.STARRED);
             }
         });
