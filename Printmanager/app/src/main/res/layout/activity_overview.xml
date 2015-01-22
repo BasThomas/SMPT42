@@ -82,8 +82,9 @@
             android:layout_weight="1"
             android:imeOptions="actionSearch"
             android:hint="SEARCH"
-            android:textColorHint="@color/light_grey"
+            android:textColorHint="@color/background"
             android:maxLines="1"
+            android:textColor="@color/black"
             android:background="@drawable/edit_text"
             android:layout_margin="7.5dp"
 
