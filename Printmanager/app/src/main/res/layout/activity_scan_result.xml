@@ -33,33 +33,26 @@
             android:background="@drawable/arrow_red" />
     </RelativeLayout>
 
-    <ScrollView
-        android:id="@+id/scroll"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Details">
+        android:layout_below="@+id/Details"
+        android:layout_above="@+id/menuBarTop"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/Name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/Details"
-            android:orientation="vertical"
-            android:paddingBottom="50dp">
+            android:layout_height="80dp">
 
-            <RelativeLayout
-                android:id="@+id/Name"
+            <TextView
+                android:id="@+id/textViewName"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/Details">
-
-                <TextView
-                    android:id="@+id/textViewName"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/red"
-                    android:gravity="center"
-                    android:text="Name"
-                    android:textColor="@color/white"
+                android:layout_height="match_parent"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="Name"
+                android:textColor="@color/white"
                     android:textSize="20dp" />
 
                 <ImageView
@@ -67,8 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:padding="5dp"
                     android:layout_marginLeft="5dp"
+                    android:padding="5dp"
                     android:src="@drawable/test_picture" />
 
                 <ImageView
@@ -77,58 +70,66 @@
                     android:layout_height="100dp"
                     android:layout_alignParentRight="true"
                     android:paddingBottom="30dp"
-                    android:paddingTop="30dp"
                     android:paddingRight="-50dp"
+                    android:paddingTop="30dp"
                     android:src="@drawable/details_star" />
 
             </RelativeLayout>
 
+        <FrameLayout
+            android:id="@+id/DetailsArrow"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/dark_red">
 
-            <FrameLayout
-                android:id="@+id/DetailsArrow"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_below="@id/Name"
-                android:background="@color/dark_red">
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/DetailsArrowText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/red"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="DETAILS"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
-                    <TextView
-                        android:id="@+id/DetailsArrowText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@color/red"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="DETAILS"
-                        android:textColor="@color/white"
-                        android:textSize="12dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/red_triangle" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/red_triangle" />
-
-                </LinearLayout>
+            </LinearLayout>
 
 
-            </FrameLayout>
+        </FrameLayout>
 
-            <TableLayout
+        <ScrollView
+            android:id="@+id/ScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp">
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
                 android:id="@+id/Table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_below="@+id/DetailsArrow"
                 android:background="@color/white"
                 android:paddingLeft="10dp">
 
 
-                <TableRow
-                    android:background="@drawable/tablerow">
+                <TableRow android:background="@drawable/tablerow">
 
                     <TextView
                         android:layout_height="40dp"
@@ -141,8 +142,8 @@
                         android:id="@+id/textViewNameValue"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
-                        android:paddingTop="10dp"
                         android:layout_marginTop="0.5dp"
+                        android:paddingTop="10dp"
                         android:text="Tekst hier"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -212,8 +213,8 @@
 
                     <TextView
                         android:layout_height="32dp"
-                        android:text="@string/scanned_date"
                         android:layout_marginTop="-8dp"
+                        android:text="@string/scanned_date"
                         android:textColor="@color/black"
                         android:textSize="12dp" />
 
@@ -232,8 +233,8 @@
 
                     <TextView
                         android:layout_height="32dp"
-                        android:text="@string/printed_date"
                         android:layout_marginTop="-8dp"
+                        android:text="@string/printed_date"
                         android:textColor="@color/black"
                         android:textSize="12dp" />
 
@@ -246,52 +247,53 @@
                         android:textSize="15dp" />
                 </TableRow>
             </TableLayout>
+            </RelativeLayout>
+        </ScrollView>
 
-            <FrameLayout
-                android:id="@+id/StatusArrow"
+        <FrameLayout
+            android:id="@+id/StatusArrow"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="-100dp"
+            android:background="@color/dark_red">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_below="@id/Table"
-                android:background="@color/dark_red">
+                android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/red"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="STATUS"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@color/red"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="STATUS"
-                        android:textColor="@color/white"
-                        android:textSize="12dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/red_triangle" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/red_triangle" />
+            </LinearLayout>
+        </FrameLayout>
 
-                </LinearLayout>
-
-
-            </FrameLayout>
-
-            <ListView
-                android:id="@+id/listViewTasks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/StatusArrow" />
-        </LinearLayout>
-    </ScrollView>
+        <ListView
+            android:id="@+id/listViewTasks"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-80dp"
+            android:layout_width="fill_parent"/>
+    </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:id="@+id/menuBarTop"
         android:layout_above="@+id/bottomButtonName"
         android:background="@drawable/taskbar"
         android:orientation="horizontal"

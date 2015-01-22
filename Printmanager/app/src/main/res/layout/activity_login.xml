@@ -45,7 +45,7 @@
         android:imeOptions="actionNext"
         android:paddingLeft="10dp"
         android:text="@string/username"
-        android:textColor="@color/light_red"/>
+        android:textColor="@color/light_red" />
 
     <EditText
         android:id="@+id/password"

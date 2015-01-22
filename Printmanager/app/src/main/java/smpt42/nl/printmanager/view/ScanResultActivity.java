@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
@@ -27,13 +30,14 @@ import smpt42.nl.printmanager.control.CashManager;
 import smpt42.nl.printmanager.control.SharedPref;
 import smpt42.nl.printmanager.control.internet.GetScanByCode;
 import smpt42.nl.printmanager.model.Scan;
+import smpt42.nl.printmanager.model.Task;
 
 
 public class ScanResultActivity extends Activity {
 
+    private static final int RESULT_NOT_FOUND = 8128;
     private Scan scan;
     private SharedPref pref;
-    private static final int RESULT_NOT_FOUND = 8128;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +138,15 @@ public class ScanResultActivity extends Activity {
                 }
             }
             updateLabels();
+            final ListView listViewTasks = (ListView) findViewById(R.id.listViewTasks);
+            listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ArrayList<Task> tasks = scan.getTasks();
+                    TaskArrayAdapter taskArrayAdapter = new TaskArrayAdapter(ScanResultActivity.this, tasks);
+                    listViewTasks.setAdapter(taskArrayAdapter);
+                }
+            });
             setResult(RESULT_OK);
         } else {
             setResult(RESULT_NOT_FOUND);
@@ -156,6 +169,10 @@ public class ScanResultActivity extends Activity {
         textViewScannedDate.setText(this.scan.getScanDate().toString());
         TextView textViewPrintedDate = (TextView) findViewById(R.id.textViewPrintedDateValue);
         textViewPrintedDate.setText(this.scan.getPrintDate().toString());
+        ListView listViewTasks = (ListView) findViewById(R.id.listViewTasks);
+        ArrayList<Task> tasks = scan.getTasks();
+        TaskArrayAdapter taskArrayAdapter = new TaskArrayAdapter(this, tasks);
+        listViewTasks.setAdapter(taskArrayAdapter);
     }
 
     @Override

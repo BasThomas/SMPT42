@@ -86,8 +86,7 @@
         android:paddingLeft="10dp">
 
 
-        <TableRow
-            android:background="@drawable/tablerow">
+        <TableRow android:background="@drawable/tablerow">
 
             <TextView
                 android:layout_height="32dp"
@@ -131,6 +130,7 @@
         <TableRow
             android:layout_marginTop="10dp"
             android:background="@drawable/tablerow">
+
             <TextView
                 android:layout_height="32dp"
                 android:gravity="center_vertical"

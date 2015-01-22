@@ -3,9 +3,9 @@
     android:id="@+id/historyParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:gravity="center_horizontal"
-    tools:context=".MainActivity"
-    android:background="@color/background">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/lblTitle"
@@ -37,8 +37,8 @@
             android:layout_height="35dp"
             android:background="@drawable/sort_button_left"
             android:text="SCAN DATE"
-            android:textSize="10dp"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/btnCompany"
@@ -46,8 +46,8 @@
             android:layout_height="35dp"
             android:background="@drawable/sort_button_centre_inactive"
             android:text="COMPANY"
-            android:textSize="10dp"
-            android:textColor="#f00" />
+            android:textColor="#f00"
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/btnStarred"
@@ -55,8 +55,8 @@
             android:layout_height="35dp"
             android:background="@drawable/sort_button_right_inactive"
             android:text="STARRED"
-            android:textSize="10dp"
-            android:textColor="#f00" />
+            android:textColor="#f00"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,34 +64,34 @@
         android:layout_width="fill_parent"
         android:layout_height="55dp"
         android:layout_below="@+id/linearLayout"
+        android:background="@color/background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="@color/background"
         android:weightSum="1">
 
 
         <!--<ImageView-->
-            <!--android:id="@+id/imageView"-->
-            <!--android:layout_width="32dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:background="@android:drawable/ic_search_category_default" />-->
+        <!--android:id="@+id/imageView"-->
+        <!--android:layout_width="32dp"-->
+        <!--android:layout_height="32dp"-->
+        <!--android:background="@android:drawable/ic_search_category_default" />-->
 
         <EditText
             android:id="@+id/editTextFind"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="7.5dp"
+
             android:layout_weight="1"
+            android:background="@drawable/edit_text"
+            android:gravity="center"
 
             android:hint="SEARCH"
-            android:textColorHint="@color/background"
             android:maxLines="1"
-
-            android:textColor="@color/black"
-            android:background="@drawable/edit_text"
-            android:layout_margin="7.5dp"
             android:singleLine="true"
+            android:textColor="@color/black"
 
-            android:gravity="center"
+            android:textColorHint="@color/background"
             android:textSize="12dp" />
     </LinearLayout>
 

@@ -1,9 +1,18 @@
 package smpt42.nl.printmanager.model;
 
+import android.content.Intent;
+
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
+import smpt42.nl.printmanager.control.internet.GetScanByCode;
+import smpt42.nl.printmanager.control.internet.GetTasksByScanID;
 import smpt42.nl.printmanager.model.enums.SCAN_STATUS;
 
 /**
@@ -20,6 +29,7 @@ public class Scan {
     private SCAN_STATUS status;
     private String barcode;
     private String previewURL;
+    private ArrayList<Task> tasks;
 
 	public Scan(Company company, String name, Date scanDate, Date printDate, String barcode) {
 		this.company = company;
@@ -103,7 +113,29 @@ public class Scan {
         if (this.name.toLowerCase().startsWith(s)) {
             return true;
         }
-
         return false;
+    }
+
+    public ArrayList<Task> getTasks() {
+        if (tasks == null){
+            try {
+                tasks = new GetTasksByScanID().execute(scanID).get();
+                Collections.sort(tasks, new Comparator<Task>() {
+                    @Override
+                    public int compare(Task lhs, Task rhs) {
+                        return ((Integer) lhs.getOrderID()).compareTo((Integer) rhs.getOrderID());
+                    }
+                });
+                return tasks;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+                return new ArrayList<>();
+            }
+        }else{
+            return tasks;
+        }
     }
 }
