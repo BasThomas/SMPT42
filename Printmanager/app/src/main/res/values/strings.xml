@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Printmanager</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="title_activity_scan_result">ScanResultActivity</string>
+    <string name="title_activity_resent__scans">Resent_Scans</string>
+    <string name="details">Details</string>
+    <string name="name">Name</string>
+    <string name="company">Company</string>
+    <string name="address">Address</string>
+    <string name="tel">Tel</string>
+    <string name="scanned_date">Scanned\ndate</string>
+    <string name="printed_date">Printed\ndate</string>
+    <string name="status">Status</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="history">History</string>
+    <string name="scan">Scan</string>
+    <string name="account">Account</string>
+    <string name="title_activity_overview">OverviewActivity</string>
+    <string name="personal">Personal</string>
+    <string name="logout">Log out</string>
+
+
+</resources>

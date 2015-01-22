@@ -1,0 +1,352 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="smpt42.nl.printmanager.view.ScanResultActivity">
+
+
+    <TextView
+        android:id="@+id/Details"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/details"
+        android:textColor="@color/black"
+        android:textSize="17dp" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+
+        <ImageButton
+            android:id="@+id/backImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="12.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12.5dp"
+            android:background="@drawable/arrow_red" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Details">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Details"
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
+
+            <RelativeLayout
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/Details">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textColor="@color/white"
+                    android:textSize="30dp" />
+
+                <ImageView
+                    android:id="@+id/scanPreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:padding="10dp"
+                    android:src="@drawable/test_picture" />
+
+                <ImageView
+                    android:id="@+id/ImageViewStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingBottom="25dp"
+                    android:paddingTop="25dp"
+                    android:src="@drawable/details_star" />
+
+            </RelativeLayout>
+
+
+            <FrameLayout
+                android:id="@+id/DetailsArrow"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@id/Name"
+                android:background="@color/dark_red">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/DetailsArrowText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/red"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/details"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/red_triangle" />
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <TableLayout
+                android:id="@+id/Table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DetailsArrow"
+                android:background="@color/white"
+                android:paddingLeft="10dp">
+
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/name"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewNameValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:text="@string/company"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewCompanyValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:text="@string/address"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewAdresValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:text="@string/tel"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewTelValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/red"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:text="@string/scanned_date"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewScannedDateValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:text="@string/printed_date"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/textViewPrintedDateValue"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Tekst hier"
+                        android:textColor="@color/black"
+                        android:textSize="15dp" />
+                </TableRow>
+            </TableLayout>
+
+            <FrameLayout
+                android:id="@+id/StatusArrow"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@id/Table"
+                android:background="@color/dark_red">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/red"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/status"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/red_triangle" />
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <ListView
+                android:id="@+id/listViewTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/StatusArrow" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_above="@+id/bottomButtonName"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:weightSum="3">
+
+        <ImageView
+            android:id="@+id/historyImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/history_red" />
+
+        <ImageView
+            android:id="@+id/scanImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/qr_black" />
+
+        <ImageView
+            android:id="@+id/accountImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/profile" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomButtonName"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="7dp"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/historyText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/history"
+            android:textColor="@color/red"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/scanText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/scan"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/accountText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/account"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
