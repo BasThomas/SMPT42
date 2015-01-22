@@ -39,6 +39,14 @@ public class OverviewActivity extends Activity {
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        this.finish();
+        this.startActivity(getIntent());
+    }
+
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.
