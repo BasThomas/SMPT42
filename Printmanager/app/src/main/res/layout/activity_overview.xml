@@ -68,11 +68,11 @@
         android:weightSum="1">
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:drawable/ic_search_category_default" />
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView"-->
+            <!--android:layout_width="32dp"-->
+            <!--android:layout_height="32dp"-->
+            <!--android:background="@android:drawable/ic_search_category_default" />-->
 
         <EditText
             android:id="@+id/editTextFind"

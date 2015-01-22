@@ -32,20 +32,20 @@
                 android:id="@+id/tbTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="-3dp"
-                android:layout_marginTop="0.5dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="6dp"
                 android:text="TITLE"
                 android:textColor="#000"
-                android:textSize="17dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"
+                android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/imageStarred"
                 android:layout_width="25dp"
-                android:layout_height="21.5dp"
+                android:layout_height="27dp"
                 android:paddingBottom="3dp"
-                android:paddingTop="4dp"
-                android:src="@drawable/history_starred" />
+                android:paddingTop="8dp"
+                android:src="@drawable/history_starred_dark" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,34 +58,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-0.5dp"
                 android:text="COMPANY"
                 android:textColor="#000"
-                android:textSize="12dp" />
+                android:textSize="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="-2dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="1dp"
                 android:text="Gescand op"
-                android:textSize="7dp" />
+                android:textSize="6dp" />
 
             <TextView
                 android:id="@+id/tbDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="-1dp"
                 android:text="26-10-2014"
-                android:textSize="9dp" />
+                android:textSize="7dp" />
 
             <TextView
                 android:id="@+id/tbTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
                 android:text="15:30"
-                android:textSize="9dp" />
+                android:textSize="7dp" />
         </LinearLayout>
     </LinearLayout>
 
