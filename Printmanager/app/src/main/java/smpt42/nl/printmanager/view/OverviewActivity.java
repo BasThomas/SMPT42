@@ -50,6 +50,7 @@ public class OverviewActivity extends Activity {
         @Override
         public void afterTextChanged(Editable s) {
             filter(editTextFind.getText().toString());
+            editTextFind.setTextColor(getResources().getColor(R.color.black));
 
         }
     };
@@ -119,13 +120,7 @@ public class OverviewActivity extends Activity {
         });
 
         editTextFind = (EditText) findViewById(R.id.editTextFind);
-        /*editTextFind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                filter(v.getText().toString());
-                return true;
-            }
-        });*/
+
         editTextFind.addTextChangedListener(textWatcher);
 
         final Button btnDate = (Button) findViewById(R.id.btnDate);
