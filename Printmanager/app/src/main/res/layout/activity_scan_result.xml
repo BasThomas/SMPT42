@@ -24,12 +24,12 @@
 
         <ImageButton
             android:id="@+id/backImageButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
             android:layout_marginBottom="12.5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="12.5dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/arrow_red" />
     </RelativeLayout>
 
@@ -60,7 +60,7 @@
                     android:gravity="center"
                     android:text="Name"
                     android:textColor="@color/white"
-                    android:textSize="30dp" />
+                    android:textSize="20dp" />
 
                 <ImageView
                     android:id="@+id/scanPreview"

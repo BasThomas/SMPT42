@@ -65,6 +65,7 @@
         android:layout_below="@+id/linearLayout"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:background="@color/background"
         android:weightSum="1">
 
 
@@ -77,13 +78,16 @@
         <EditText
             android:id="@+id/editTextFind"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:imeOptions="actionSearch"
-            android:hint="Search"
+            android:hint="SEARCH"
+            android:textColor="@color/light_grey"
             android:maxLines="1"
-            android:textAlignment="center"
-            android:textSize="15dp" />
+            android:background="@drawable/edit_text"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:textSize="12dp" />
     </LinearLayout>
 
     <ListView
