@@ -291,7 +291,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_above="@+id/bottomButtonName"
-        android:background="@color/white"
+        android:background="@drawable/taskbar"
         android:orientation="horizontal"
         android:paddingTop="10dp"
         android:weightSum="3">
