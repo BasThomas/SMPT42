@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" >
         <shape>
+=======
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_pressed="true"
+        android:right="-5dp"
+        android:left="-5dp"
+        android:top="-5dp">
+        <shape android:shape="rectangle" >
+>>>>>>> Stashed changes
             <solid
                 android:color="#ff8080" />
             <stroke
                 android:width="1dp"
+<<<<<<< Updated upstream
                 android:color="#ff8080" />
 
 
@@ -13,6 +23,15 @@
     </item>
     <item>
         <shape>
+=======
+                android:color="#ff0000" />
+        </shape>
+    </item>
+    <item
+        android:bottom="-5dp"
+        android:top="-5dp">
+        <shape android:shape="rectangle" >
+>>>>>>> Stashed changes
             <solid
                 android:color="#ff8080" />
             <stroke
@@ -20,4 +39,8 @@
                 android:color="#ff0000" />
         </shape>
     </item>
+<<<<<<< Updated upstream
 </selector>
+=======
+</layer-list>
+>>>>>>> Stashed changes

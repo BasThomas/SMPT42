@@ -41,10 +41,17 @@
 
             <ImageView
                 android:id="@+id/imageStarred"
+<<<<<<< Updated upstream
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
+=======
+                android:layout_width="25dp"
+                android:layout_height="21.5dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="4dp"
+>>>>>>> Stashed changes
                 android:src="@drawable/history_starred" />
         </LinearLayout>
 
