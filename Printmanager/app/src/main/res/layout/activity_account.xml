@@ -32,7 +32,7 @@
             android:gravity="center"
             android:text="Name"
             android:textColor="@color/white"
-            android:textSize="30dp" />
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/userImage"
@@ -62,9 +62,9 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/personal"
+                android:text="PERSONAL"
                 android:textColor="@color/white"
-                android:textSize="15dp" />
+                android:textSize="12dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -86,10 +86,11 @@
         android:paddingLeft="10dp">
 
 
-        <TableRow>
+        <TableRow
+            android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:gravity="center_vertical"
                 android:text="@string/name"
                 android:textColor="@color/black"
@@ -97,7 +98,7 @@
 
             <TextView
                 android:id="@+id/textViewNameValue"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:paddingTop="10dp"
@@ -106,18 +107,20 @@
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:gravity="center_vertical"
                 android:text="@string/company"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/textViewCompanyValue"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"
@@ -125,18 +128,19 @@
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
-
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tablerow">
             <TextView
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:gravity="center_vertical"
                 android:text="@string/address"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/textViewAdresValue"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"
@@ -144,18 +148,20 @@
                 android:textSize="15dp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_marginTop="10dp"
+            android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:gravity="center_vertical"
                 android:text="@string/tel"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/textViewTelValue"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"
