@@ -38,7 +38,8 @@
             android:id="@+id/userImage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="10dp"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/piet" />
 
     </FrameLayout>
@@ -86,14 +87,20 @@
         android:paddingLeft="10dp">
 
 
+<<<<<<< Updated upstream
         <TableRow android:background="@drawable/tablerow">
+=======
+        <TableRow
+            android:paddingBottom="10dp"
+            android:background="@drawable/tablerow">
+>>>>>>> Stashed changes
 
             <TextView
                 android:layout_height="32dp"
                 android:gravity="center_vertical"
-                android:text="@string/name"
+                android:text="NAME"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/textViewNameValue"
@@ -107,19 +114,21 @@
         </TableRow>
 
         <TableRow
+            android:paddingBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:gravity="center_vertical"
-                android:text="@string/company"
+                android:text="COMPANY"
+                android:layout_marginTop="-1.5dp"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/textViewCompanyValue"
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"
@@ -128,19 +137,21 @@
         </TableRow>
 
         <TableRow
+            android:paddingBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:gravity="center_vertical"
-                android:text="@string/address"
+                android:text="ADDRESS"
+                android:layout_marginTop="-1.5dp"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/textViewAdresValue"
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"
@@ -149,19 +160,21 @@
         </TableRow>
 
         <TableRow
+            android:paddingBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/tablerow">
 
             <TextView
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:gravity="center_vertical"
-                android:text="@string/tel"
+                android:text="PHONE"
+                android:layout_marginTop="-1.5dp"
                 android:textColor="@color/black"
-                android:textSize="12dp" />
+                android:textSize="11dp" />
 
             <TextView
                 android:id="@+id/textViewTelValue"
-                android:layout_height="32dp"
+                android:layout_height="20dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="Tekst hier"

@@ -129,14 +129,20 @@
                 android:paddingLeft="10dp">
 
 
+<<<<<<< Updated upstream
                 <TableRow android:background="@drawable/tablerow">
+=======
+                <TableRow
+                    android:layout_marginTop="-2dp"
+                    android:background="@drawable/tablerow">
+>>>>>>> Stashed changes
 
                     <TextView
                         android:layout_height="40dp"
                         android:paddingTop="10dp"
-                        android:text="@string/name"
+                        android:text="NAME"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewNameValue"
@@ -156,9 +162,9 @@
 
                     <TextView
                         android:layout_height="32dp"
-                        android:text="@string/company"
+                        android:text="COMPANY"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewCompanyValue"
@@ -175,9 +181,9 @@
 
                     <TextView
                         android:layout_height="32dp"
-                        android:text="@string/address"
+                        android:text="ADDRESS"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewAdresValue"
@@ -194,9 +200,9 @@
 
                     <TextView
                         android:layout_height="32dp"
-                        android:text="@string/tel"
+                        android:text="PHONE"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewTelValue"
@@ -213,10 +219,14 @@
 
                     <TextView
                         android:layout_height="32dp"
+<<<<<<< Updated upstream
+=======
+                        android:text="SCANNED\nDATE"
+>>>>>>> Stashed changes
                         android:layout_marginTop="-8dp"
                         android:text="@string/scanned_date"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewScannedDateValue"
@@ -232,11 +242,16 @@
                     android:background="@drawable/tablerow">
 
                     <TextView
+
                         android:layout_height="32dp"
+<<<<<<< Updated upstream
+=======
+                        android:text="PRINTED\nDATE"
+>>>>>>> Stashed changes
                         android:layout_marginTop="-8dp"
                         android:text="@string/printed_date"
                         android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textSize="11dp" />
 
                     <TextView
                         android:id="@+id/textViewPrintedDateValue"
