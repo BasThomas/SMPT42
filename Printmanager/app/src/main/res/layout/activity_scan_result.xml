@@ -128,14 +128,9 @@
                 android:background="@color/white"
                 android:paddingLeft="10dp">
 
-
-<<<<<<< Updated upstream
-                <TableRow android:background="@drawable/tablerow">
-=======
                 <TableRow
                     android:layout_marginTop="-2dp"
                     android:background="@drawable/tablerow">
->>>>>>> Stashed changes
 
                     <TextView
                         android:layout_height="40dp"
@@ -219,10 +214,6 @@
 
                     <TextView
                         android:layout_height="32dp"
-<<<<<<< Updated upstream
-=======
-                        android:text="SCANNED\nDATE"
->>>>>>> Stashed changes
                         android:layout_marginTop="-8dp"
                         android:text="@string/scanned_date"
                         android:textColor="@color/black"
@@ -244,10 +235,6 @@
                     <TextView
 
                         android:layout_height="32dp"
-<<<<<<< Updated upstream
-=======
-                        android:text="PRINTED\nDATE"
->>>>>>> Stashed changes
                         android:layout_marginTop="-8dp"
                         android:text="@string/printed_date"
                         android:textColor="@color/black"

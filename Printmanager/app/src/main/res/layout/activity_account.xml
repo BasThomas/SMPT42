@@ -86,14 +86,9 @@
         android:background="@color/white"
         android:paddingLeft="10dp">
 
-
-<<<<<<< Updated upstream
-        <TableRow android:background="@drawable/tablerow">
-=======
         <TableRow
             android:paddingBottom="10dp"
             android:background="@drawable/tablerow">
->>>>>>> Stashed changes
 
             <TextView
                 android:layout_height="32dp"
