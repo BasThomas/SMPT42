@@ -15,8 +15,8 @@ import smpt42.nl.printmanager.control.internet.UpdateScanDate;
 
 public class MainActivity extends ActionBarActivity {
 
-    private IntentIntegrator scanIntegrator;
     private static final int RESULT_NOT_FOUND = 8128;
+    private IntentIntegrator scanIntegrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

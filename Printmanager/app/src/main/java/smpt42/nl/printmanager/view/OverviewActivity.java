@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -15,21 +14,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.model.enums.SORT_TYPE;
 import smpt42.nl.printmanager.control.ScanManager;
 import smpt42.nl.printmanager.control.internet.GetScans;
 import smpt42.nl.printmanager.model.Scan;
+import smpt42.nl.printmanager.model.enums.SORT_TYPE;
 
 
 public class OverviewActivity extends Activity {
@@ -61,8 +58,7 @@ public class OverviewActivity extends Activity {
     }
 
     @Override
-    public void onRestart()
-    {
+    public void onRestart() {
         super.onRestart();
         this.finish();
         this.startActivity(getIntent());
@@ -212,7 +208,7 @@ public class OverviewActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK){
+        if (resultCode != RESULT_OK) {
             finish();
         }
     }

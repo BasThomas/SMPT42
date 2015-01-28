@@ -7,21 +7,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.view.AccountActivity;
-import smpt42.nl.printmanager.view.MainActivity;
-import smpt42.nl.printmanager.view.OverviewActivity;
 
 /**
  * Created by Mark on 9-1-2015.
  */
-public class SetTaskBar  {
+public class SetTaskBar {
 
     private Activity activity;
 
-    public SetTaskBar(Activity act)
-    {
-        if(act == null)
-        {
+    public SetTaskBar(Activity act) {
+        if (act == null) {
             return;
         }
 
@@ -39,8 +34,7 @@ public class SetTaskBar  {
 
     }
 
-    private void SetOnClickImageView(ImageView IVhistory, ImageView IVscan, ImageView IVaccount)
-    {
+    private void SetOnClickImageView(ImageView IVhistory, ImageView IVscan, ImageView IVaccount) {
         IVhistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);
@@ -79,8 +73,7 @@ public class SetTaskBar  {
         });
     }
 
-    private void SetOnClickTextView(TextView TVhistory, TextView TVscan, TextView TVaccount)
-    {
+    private void SetOnClickTextView(TextView TVhistory, TextView TVscan, TextView TVaccount) {
         TVhistory.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(activity, OverviewActivity.class);

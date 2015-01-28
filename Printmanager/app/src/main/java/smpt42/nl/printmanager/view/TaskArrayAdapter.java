@@ -1,29 +1,19 @@
 package smpt42.nl.printmanager.view;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 
 import smpt42.nl.printmanager.R;
-import smpt42.nl.printmanager.control.CashManager;
-import smpt42.nl.printmanager.control.SharedPref;
-import smpt42.nl.printmanager.model.Scan;
+import smpt42.nl.printmanager.control.internet.SetTaskCompleted;
 import smpt42.nl.printmanager.model.Task;
 
 /**
@@ -42,16 +32,33 @@ public class TaskArrayAdapter extends ArrayAdapter<Task> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.task_item, parent, false);
+        final View rowView = inflater.inflate(R.layout.task_item, parent, false);
 
         final Task task = itemsArrayList.get(position);
 
         TextView tbTaskType = (TextView) rowView.findViewById(R.id.tbTaskType);
         tbTaskType.setText(task.getTaskType());
-        Date dateCompleted = task.getDateCompleted();
+        final Date dateCompleted = task.getDateCompleted();
+        final CheckBox checkBoxCompleted = (CheckBox) rowView.findViewById(R.id.checkBoxCompleted);
         if (dateCompleted != null) {
             TextView tbDateCompleted = (TextView) rowView.findViewById(R.id.tbDateCompleted);
             tbDateCompleted.setText(dateCompleted.toString());
+            checkBoxCompleted.setChecked(true);
+            checkBoxCompleted.setEnabled(false);
+        } else {
+            checkBoxCompleted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String[] args = new String[3];
+                    args[0] = String.valueOf(task.getOrderID());
+                    args[1] = task.getTaskType();
+                    args[2] = String.valueOf(task.getScan_id());
+                    new SetTaskCompleted().execute(args);
+                    checkBoxCompleted.setEnabled(false);
+                    TextView tbDateCompleted = (TextView) rowView.findViewById(R.id.tbDateCompleted);
+                    tbDateCompleted.setText(new Date().toString());
+                }
+            });
         }
         return rowView;
     }

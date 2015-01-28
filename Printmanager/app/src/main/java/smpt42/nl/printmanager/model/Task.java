@@ -1,6 +1,5 @@
 package smpt42.nl.printmanager.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -8,14 +7,16 @@ import java.util.Date;
  */
 public class Task {
 
-    private final int itemID;
+    private final int taskOrder;
     private final String taskType;
     private Date dateCompleted;
+    private int scan_id;
 
-    public Task(String taskType, int taskOrder, Date dateCompleted) {
+    public Task(String taskType, int taskOrder, Date dateCompleted, int scan_id) {
         this.taskType = taskType;
-        this.itemID = taskOrder;
+        this.taskOrder = taskOrder;
         this.dateCompleted = dateCompleted;
+        this.scan_id = scan_id;
     }
 
     public String getTaskType() {
@@ -23,14 +24,14 @@ public class Task {
     }
 
     public int getOrderID() {
-        return itemID;
+        return taskOrder;
     }
 
     public Date getDateCompleted() {
         return dateCompleted;
     }
 
-    public void setDateCompleted(Date dateCompleted) {
-        this.dateCompleted = dateCompleted;
+    public int getScan_id() {
+        return scan_id;
     }
 }

@@ -40,7 +40,7 @@ public class GetTasksByScanID extends AsyncTask<Integer, Void, ArrayList<Task>> 
                     } catch (ClassCastException e) {
                         //Do nothing (unfortunately it cannot convert null to String) and if the DateCompleted is null it means it isn't completed yet...
                     }
-                    returner.add(new Task(taskType, taskOrder, dateCompleted));
+                    returner.add(new Task(taskType, taskOrder, dateCompleted, params[0]));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
