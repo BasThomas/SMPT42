@@ -27,7 +27,7 @@ public class GetTasksByScanID extends AsyncTask<Integer, Void, ArrayList<Task>> 
         JSONObject jsonObjectContainer = JSONfunctions.getJSONfromURL("http://moridrin.com/android/PrintManager/getTasksByScanID.php?scan_id=" + params[0]);
         if (jsonObjectContainer != null) {
             ArrayList<Task> returner = new ArrayList<>();
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 JSONArray jsonObjects = jsonObjectContainer.getJSONArray("Tasks");
                 for (int i = 0; i < jsonObjects.length(); i++) {
